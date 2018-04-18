@@ -11,7 +11,8 @@ N/A
 Role Variables
 --------------
 
-Change the following variables value according to your environment. 
+Change the following variables values according to your environment. 
+File: site.yml
 
     template_team: 'nicteam0'
     first_interface: 'eth1'
@@ -29,6 +30,6 @@ Run Role
 --------
 
 - site.yml --> change the varibles values
-- inventory --> hostname
+- inventory --> change the hostname
 
-# ansible-playbook -vvv -i inventory site.yml
+ansible-playbook -vvv -i inventory site.yml

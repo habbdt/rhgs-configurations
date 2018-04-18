@@ -1,0 +1,32 @@
+---
+# tasks file for teaming
+- name: task - stop and disable NetworkManager
+  service:
+    name: NetworkManager
+    state: stopped
+    enabled: no
+
+- name: task - uninstall NetworkManager
+  yum:
+    name: NetworkManager
+    state: absent
+  ignore_errors: yes
+
+- name: task - copy configurations files
+  template:
+    backup: yes
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0644
+    owner: root
+    group: root 
+  with_items:
+    - { src: 'ifcfg-nicteam0.j2', dest: '/etc/sysconfig/network-scripts/ifcfg-{{ template_team }}' }
+    - { src: 'ifcfg-nicteam0-port0.j2', dest: '/etc/sysconfig/network-scripts/ifcfg-{{ template_team }}-port0' }
+    - { src: 'ifcfg-nicteam0-port1.j2', dest: '/etc/sysconfig/network-scripts/ifcfg-{{ template_team }}-port1' }
+  ignore_errors: no
+  register: template_out
+  notify:
+  - restart networking
+- debug: msg="stdout={{ template_out }}"
+- debug: msg="stderr={{ template_out }}"

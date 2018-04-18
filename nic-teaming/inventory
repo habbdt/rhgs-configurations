@@ -1,0 +1,4 @@
+# ansible host inventory file
+
+[rhgs-production]
+server1.example.com

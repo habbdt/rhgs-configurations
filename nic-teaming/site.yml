@@ -8,7 +8,7 @@
     template_team: 'nicteam0'
     first_interface: 'eth1'
     second_interface: 'eth2'
-    ip_address_team: '192.168.122.219'
+    ip_address_team: '192.168.122.239'
     aggregation_method: 'activebackup'
     team_gateway: '192.168.122.1'
     mtu_size: '1500'

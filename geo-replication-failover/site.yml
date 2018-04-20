@@ -1,0 +1,20 @@
+# playbook - configure NIC teaming
+---
+- hosts: all
+  connection: ssh
+  remote_user: root
+
+  vars:
+    template_team: 'nicteam0'
+    first_interface: 'eth1'
+    second_interface: 'eth2'
+    ip_address_team: '192.168.122.239'
+    aggregation_method: 'activebackup'
+    team_gateway: '192.168.122.1'
+    mtu_size: '1500'
+    dns1_server: '192.168.122.3'
+    dns2_server: '192.168.122.1'
+    search_domain: 'example.com'
+
+  roles:
+   - teaming

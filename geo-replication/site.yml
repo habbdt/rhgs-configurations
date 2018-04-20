@@ -1,0 +1,13 @@
+# playbook - configure NIC teaming
+---
+- hosts: all
+  connection: ssh
+  remote_user: root
+
+  vars:
+    master_volume: 'mastervol'
+    slave_volume: 'slavevol'
+    slave_host: 'rhgs4.example.com'
+
+  roles:
+   - geo-replication 

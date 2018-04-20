@@ -1,0 +1,4 @@
+# ansible host inventory file
+
+[master-node]
+rhgs1.example.com

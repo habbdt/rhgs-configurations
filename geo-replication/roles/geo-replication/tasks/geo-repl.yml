@@ -1,0 +1,16 @@
+--- # create geo-replication : root
+
+- name: task - create a common pem pub file
+  shell: 'gluster system:: execute gsec_create'
+
+- name: task - create the geo-replication session
+  shell: 'gluster volume geo-replication {{ master_volume }} {{ slave_host }}::{{ slave_volume }} create push-pem'
+
+- name: task - enable shared_storage
+  shell: 'gluster volume set all cluster.enable-shared-storage enable'
+
+- name: task - configure meta volume 
+  shell: 'gluster volume geo-replication {{ master_volume }} {{ slave_host }}::{{ slave_volume }} use_meta_volume true '
+
+- name: task - start geo-replication session
+  shell: 'gluster volume geo-replication {{ master_volume }} {{ slave_host }}::{{ slave_volume }} start'

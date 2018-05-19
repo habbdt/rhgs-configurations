@@ -1,0 +1,23 @@
+---
+# tasks file for fetch-files
+
+- name: tar /var/lib/glusterfs
+  shell: ' tar -cvf /tmp/glusterfs.tar /var/lib/glusterd/* '
+  ignore_errors: no
+  register: tar_out
+- debug: msg="stdout={{ tar_out }}"
+- debug: msg="stderr={{ tar_out }}"
+
+- name: fetch files from the rhgs nodes
+  fetch:
+    src: "{{ item }}"
+    dest: "{{ destinations }}"
+  with_items:
+    - '/etc/fstab'
+    - '/etc/resolv.conf'
+    - '/etc/ntp.conf'
+    - '/tmp/glusterfs.tar'
+  ignore_errors: no
+  register: fetch_out
+- debug: msg="stdout={{ fetch_out }}"
+- debug: msg="stderr={{ fetch_out }}"

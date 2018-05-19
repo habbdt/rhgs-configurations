@@ -1,0 +1,11 @@
+# playbook - configure NIC teaming
+---
+- hosts: all
+  connection: ssh
+  remote_user: root
+
+  vars:
+    destinations: '/code/backup-dir'
+
+  roles:
+   - fetch-files 

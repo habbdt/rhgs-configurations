@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This anisble role perform fetching of some important glusterfs configurations files. 
+This anisble role perform fetching of some important systems configuration files. 
 
 Requirements
 ------------
@@ -11,7 +11,7 @@ N/A.
 Role Variables
 --------------
 
-In the inventory files provide the hostname of the hosts and in the site.yml provide the value of destinations varible. The destinations varibele defines the location where the files would be saved after being fetched from the taget nodes defined in the inventory files. 
+In the inventory file, provide the hostname of the rhgs hosts and in the site.yml file provide the value of destinations varible. The destinations variable defines the location where the files would be saved after being fetched from the taget nodes defined in the inventory file. 
 
 # site.yml
 vars:

@@ -8,6 +8,13 @@
 - debug: msg="stdout={{ tar_out }}"
 - debug: msg="stderr={{ tar_out }}"
 
+- name: df command output 
+  shell: ' df -hPT >> /tmp/df-output '
+  ignore_errors: no
+  register: df_out
+- debug: msg="stdout={{ df_out }}"
+- debug: msg="stderr={{ df_out }}"
+
 - name: fetch files from the rhgs nodes
   fetch:
     src: "{{ item }}"
@@ -17,6 +24,7 @@
     - '/etc/resolv.conf'
     - '/etc/ntp.conf'
     - '/tmp/glusterfs.tar'
+    - '/tmp/df-output'
   ignore_errors: no
   register: fetch_out
 - debug: msg="stdout={{ fetch_out }}"

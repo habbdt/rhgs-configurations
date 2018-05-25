@@ -1,0 +1,16 @@
+
+# Red Hat Repositories
+subscription-manager register --username bob@rht.com --password=mypassword
+subscription-manager attach --pool=8a8...
+subscription-manager repos --disable="*" --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.9-rpms" --enable="rhel-7-fast-datapath-rpms"
+subscription-manager repos --enable rhel-7-server-ansible-2.4-rpms
+subscription-manager repos --enable=rhel-7-server-rpms
+subscription-manager repos --enable=rh-gluster-3-for-rhel-7-server-rpms
+
+# Install the following packages on all nodes:
+- ansible-2.4
+- heketi-cli 
+- wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct
+- atomic-openshift-utils
+- atomic-openshift-excluder atomic-openshift-docker-excluder
+- docker

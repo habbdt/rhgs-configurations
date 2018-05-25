@@ -1,0 +1,145 @@
+[OSEv3:children]
+masters
+etcd
+nodes
+glusterfs
+glusterfs_registry
+
+
+[OSEv3:vars]
+ansible_ssh_user=root
+timeout=60
+ansible_ssh_user=root
+
+
+# basics
+deployment_type=openshift-enterprise       
+osm_default_subdomain=apps.ose-app-node01.example.com    
+openshift_master_default_subdomain=apps.ose-master01.example.com    
+openshift_rolling_restart_mode=system
+osm_default_node_selector="region=app"   
+openshift_master_dynamic_provisioning_enabled=true        
+containerized=false
+
+openshift_master_api_port=443
+openshift_master_console_port=443
+
+# Enable service catalog
+openshift_enable_service_catalog=true
+# Enable template service broker (requires service catalog to be enabled, above)
+template_service_broker_install=false
+
+openshift_master_identity_providers=[{'name': 'htpasswd_auth','login': 'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider','filename': '/etc/origin/master/htpasswd'}]
+
+
+                                                                                                                                                                                
+
+# core infrastructure
+openshift_router_selector="region=infra"            
+openshift_hosted_infra_selector="region=infra"
+openshift_hosted_router_replicas=3         
+
+ 
+
+# registry
+
+openshift_hosted_registry_replicas=3         
+openshift_registry_selector="region=infra"     
+
+ 
+
+# registry storage
+
+openshift_hosted_registry_storage_kind=glusterfs   
+openshift_hosted_registry_storage_volume_size=25Gi  
+
+  
+dynamic_volumes_check=False 
+
+# metrics (modify to =true when deploying metrics via specific playbook and uncomment the lines below)
+openshift_metrics_install_metrics=true   
+#openshift_metrics_hawkular_nodeselector={"region":"infra"}       
+#openshift_metrics_cassandra_nodeselector={"region":"infra"}
+#openshift_metrics_heapster_nodeselector={"region":"infra"}
+#openshift_metrics_cassanda_pvc_storage_class_name="glusterfs-storage-block"
+#openshift_metrics_cassandra_pvc_size=50Gi  
+openshift_metrics_storage_kind=dynamic                           
+
+ 
+
+# logging (modify to =true when deploying logging via specific playbook and uncomment the lines below)
+
+openshift_logging_install_logging=true                          
+#openshift_logging_es_cluster_size=3  
+#openshift_logging_es_nodeselector={"region":"infra"}              
+#openshift_logging_kibana_nodeselector={"region":"infra"}
+#openshift_logging_curator_nodeselector={"region":"infra"}
+#openshift_logging_es_pvc_storage_class_name="glusterfs-storage-block"
+openshift_logging_es_pvc_size=10Gi  
+openshift_logging_storage_kind=dynamic
+
+ 
+
+# CNS storage for applications
+
+openshift_storage_glusterfs_namespace=app-storage    
+openshift_storage_glusterfs_storageclass=true   
+openshift_storage_glusterfs_block_deploy=false    
+
+ 
+
+# CNS storage for OpenShift infrastructure
+
+openshift_storage_glusterfs_registry_namespace=infra-storage    
+openshift_storage_glusterfs_registry_storageclass=false         
+openshift_storage_glusterfs_registry_block_deploy=true     
+openshift_storage_glusterfs_registry_block_host_vol_create=true    
+
+openshift_storage_glusterfs_registry_block_host_vol_size=50     
+openshift_storage_glusterfs_registry_block_storageclass=true
+openshift_storage_glusterfs_registry_block_storageclass_default=false
+openshift_storageclass_default=false
+
+ 
+
+[masters]
+
+ose-master01.example.com
+ose-master02.example.com
+ose-master03.example.com
+
+ 
+
+[etcd]
+
+ose-master01.example.com
+ose-master02.example.com
+ose-master03.example.com
+
+ 
+
+[nodes]
+
+ose-master03.example.com openshift_node_labels="{'region': 'master'}"
+ose-master02.example.com openshift_node_labels="{'region': 'master'}"
+ose-master01.example.com openshift_node_labels="{'region': 'master'}"
+ose-app-node02.example.com openshift_node_labels="{'region': 'app'}"
+ose-app-node03.example.com openshift_node_labels="{'region': 'app'}"
+ose-app-node01.example.com openshift_node_labels="{'region': 'app'}"
+ose-infra-node01.example.com openshift_node_labels="{'region': 'infra'}"
+ose-infra-node02.example.com openshift_node_labels="{'region': 'infra'}"
+ose-infra-node03.example.com openshift_node_labels="{'region': 'infra'}"
+
+ 
+
+[glusterfs]
+ose-cns-node01.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'   
+ose-cns-node02.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'
+ose-cns-node03.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'
+
+   
+
+[glusterfs_registry]
+ose-infra-node01.example.com glusterfs_devices='[ "/dev/vdc" ]'
+ose-infra-node02.example.com glusterfs_devices='[ "/dev/vdc" ]'
+ose-infra-node03.example.com glusterfs_devices='[ "/dev/vdc" ]'

@@ -1,0 +1,15 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.122.51		ose-master01.example.com		ose-master01
+192.168.122.52		ose-master02.example.com		ose-master02
+192.168.122.53		ose-master03.example.com		ose-master03
+192.168.122.54		ose-app-node01.example.com		ose-app-node01
+192.168.122.55		ose-app-node02.example.com		ose-app-node02
+192.168.122.56		ose-app-node03.example.com		ose-app-node03
+192.168.122.57		ose-infra-node01.example.com		ose-infra-node01
+192.168.122.58		ose-infra-node02.example.com		ose-infra-node02
+192.168.122.59		ose-infra-node03.example.com		ose-infra-node03
+192.168.122.60		ose-cns-node01.example.com		ose-cns-node01
+192.168.122.61		ose-cns-node02.example.com		ose-cns-node02
+192.168.122.62		ose-cns-node03.example.com		ose-cns-node03
+

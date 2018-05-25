@@ -129,14 +129,15 @@ ose-app-node01.example.com openshift_node_labels="{'region': 'app'}"
 ose-infra-node01.example.com openshift_node_labels="{'region': 'infra'}"
 ose-infra-node02.example.com openshift_node_labels="{'region': 'infra'}"
 ose-infra-node03.example.com openshift_node_labels="{'region': 'infra'}"
-
+ose-cns-node01.example.com openshift_node_labels="{'region': 'glusterfs'}" 
+ose-cns-node02.example.com openshift_node_labels="{'region': 'glusterfs'}"
+ose-cns-node03.example.com openshift_node_labels="{'region': 'glusterfs'}"
  
 
 [glusterfs]
-ose-cns-node01.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'   
+ose-cns-node01.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'  
 ose-cns-node02.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'
 ose-cns-node03.example.com glusterfs_devices='[ "/dev/vdc","/dev/vdd" ]'
-
    
 
 [glusterfs_registry]

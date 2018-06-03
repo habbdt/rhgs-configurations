@@ -1,0 +1,19 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  creationTimestamp: 2018-06-03T14:14:09Z
+  name: glusterfs-registry-block
+  resourceVersion: "167999"
+  selfLink: /apis/storage.k8s.io/v1/storageclasses/glusterfs-registry-block
+  uid: 61ece031-6738-11e8-b945-5254006ba8c8
+parameters:
+  chapauthenabled: "true"
+  hacount: "3"
+  restsecretname: heketi-registry-admin-secret-block
+  restsecretnamespace: infra-storage
+  resturl: http://heketi-registry-infra-storage.apps.ose-master.example.com
+  restuser: admin
+provisioner: gluster.org/glusterblock
+reclaimPolicy: Delete
+
+

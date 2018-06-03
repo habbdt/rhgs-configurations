@@ -1,0 +1,5 @@
+#!/bin/bash
+ansible-playbook -i ocp-deployment-inventory -e "openshift_logging_install_logging=false" /usr/share/ansible/openshift-ansible/playbooks/openshift-logging/config.yml
+ansible-playbook -i ocp-deployment-inventory -e "openshift_logging_install_metrics=false" /usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml
+
+ 

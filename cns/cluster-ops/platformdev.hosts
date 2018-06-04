@@ -115,7 +115,7 @@ openshift_metrics_install_metrics=false
 
 
 # logging (modify to =true when deploying logging via specific playbook and uncomment the lines below)
-openshift_logging_install_logging=true                       
+openshift_logging_install_logging=false                      
 #openshift_logging_es_cluster_size=3  
 #openshift_logging_kibana_hostname=kibana.apps.ose-master.example.com
 #openshift_logging_es_nodeselector={"region":"infra"}              
@@ -127,7 +127,8 @@ openshift_logging_install_logging=true
 dynamic_volumes_check=False
 
 
-# CNS storage for applications
+# CNS storage for applications. We need to have a default storageclass for etcd during deployment, 
+# most deployments have a cloudprovider option but we do not so we can make glusterfs-storage default
 openshift_storage_glusterfs_namespace=app-storage    
 openshift_storage_glusterfs_storageclass=true   
 openshift_storage_glusterfs_block_deploy=false    

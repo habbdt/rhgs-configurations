@@ -124,6 +124,8 @@ openshift_logging_install_logging=false
 #openshift_logging_es_pvc_storage_class_name="glusterfs-registry-block"
 #openshift_logging_es_pvc_size=10Gi  
 #openshift_logging_storage_kind=dynamic
+
+# this is required otherwise it will fail openshift_sanitize_inventory. cloud provider is not configured but dynamic is set
 dynamic_volumes_check=False
 
 

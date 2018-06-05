@@ -188,3 +188,44 @@ Jun 05 13:41:28 ose-infra-node03.example.com gluster-blockd[496]: Configurati...
 Hint: Some lines were ellipsized, use -l to show in full.
 
 =============================================================================================================================
+
+# CNS Storage Class - Question
+
+=============================================================================================================================
+
+[root@ose-master01 ~]# oc get sc
+NAME                          PROVISIONER                AGE
+glusterfs-registry-block      gluster.org/glusterblock   12h
+glusterfs-storage (default)   kubernetes.io/glusterfs    13h
+
+[root@ose-master01 ~]#  oc describe sc glusterfs-registry-block
+Name:            glusterfs-registry-block
+IsDefaultClass:  No
+Annotations:     <none>
+Provisioner:     gluster.org/glusterblock
+Parameters:      chapauthenabled=true,hacount=3,restsecretname=heketi-registry-admin-secret-block,restsecretnamespace=infra-storage,resturl=http://heketi-registry-infra-storage.apps.ose-master.example.com,restuser=admin
+ReclaimPolicy:   Delete
+Events:          <none>
+[root@ose-master01 ~]#  oc describe sc glusterfs-storage
+Name:            glusterfs-storage
+IsDefaultClass:  Yes
+Annotations:     storageclass.kubernetes.io/is-default-class=true
+Provisioner:     kubernetes.io/glusterfs
+Parameters:      resturl=http://heketi-storage-app-storage.apps.ose-master.example.com,restuser=admin,secretName=heketi-storage-admin-secret,secretNamespace=app-storage
+ReclaimPolicy:   Delete
+Events:          <none>
+
+[root@ose-master01 ~]#  oc get pvc --all-namespaces
+NAMESPACE                          NAME                  STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE
+chc-test-project                   chc-claim1            Bound     pvc-f43b9a5b-6874-11e8-9522-5254006ba8c8   1Gi        RWX            glusterfs-storage          10h
+chc-test-project                   mariadb               Bound     pvc-16cb34f7-6879-11e8-9522-5254006ba8c8   1Gi        RWO            glusterfs-storage          9h
+default                            registry-claim        Bound     registry-volume                            25Gi       RWX                                       13h
+infra-storage                      chc-block-claim       Bound     pvc-1c0407fb-68ca-11e8-9a04-5254006ba8c8   1Gi        RWO            glusterfs-registry-block   8m
+infra-storage                      chc-claim1            Bound     pvc-138a4171-68ca-11e8-9a04-5254006ba8c8   1Gi        RWX            glusterfs-storage          8m
+logging                            logging-es-0          Bound     pvc-a6002f3c-6866-11e8-9522-5254006ba8c8   10Gi       RWO            glusterfs-storage          12h
+logging                            logging-es-1          Bound     pvc-c25aaebe-6866-11e8-9522-5254006ba8c8   10Gi       RWO            glusterfs-storage          11h
+logging                            logging-es-2          Bound     pvc-e07e7f5e-6866-11e8-9522-5254006ba8c8   10Gi       RWO            glusterfs-storage          11h
+openshift-ansible-service-broker   etcd                  Bound     pvc-b89a21f6-685d-11e8-9522-5254006ba8c8   1Gi        RWO            glusterfs-storage          13h
+openshift-infra                    metrics-cassandra-1   Bound     pvc-1144a8ae-6868-11e8-9522-5254006ba8c8   10Gi       RWO            glusterfs-registry-block   11h
+
+=============================================================================================================================

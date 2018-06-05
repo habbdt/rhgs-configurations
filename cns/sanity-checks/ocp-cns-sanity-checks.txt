@@ -97,3 +97,94 @@ registry-claim   Bound     registry-volume   25Gi       RWX                     
     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
     ClaimName:  registry-claim
 =============================================================================================================================
+
+# Storage Functionality
+
+=============================================================================================================================
+
+[root@ose-master01 ~]# oc get sc
+NAME                          PROVISIONER                AGE
+glusterfs-registry-block      gluster.org/glusterblock   12h
+glusterfs-storage (default)   kubernetes.io/glusterfs    13h
+
+[root@ose-master01 ~]# cat pvc-file.yaml 
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: chc-claim1 
+ annotations:
+   volume.beta.kubernetes.io/storage-class: glusterfs-storage
+spec:
+ accessModes:
+   - ReadWriteMany
+ resources:
+   requests:
+     storage: 1Gi
+
+[root@ose-master01 ~]# oc create -f pvc-file.yaml 
+persistentvolumeclaim "chc-claim1" created
+[root@ose-master01 ~]# cat pvc-block.yaml 
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: chc-block-claim
+ annotations:
+   volume.beta.kubernetes.io/storage-class: glusterfs-registry-block
+spec:
+ accessModes:
+   - ReadWriteOnce
+ resources:
+   requests:
+     storage: 1Gi
+
+[root@ose-master01 ~]# oc create -f pvc-block.yaml 
+persistentvolumeclaim "chc-block-claim" created
+
+[root@ose-master01 ~]# oc get pvc
+NAME              STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE
+chc-block-claim   Bound     pvc-1c0407fb-68ca-11e8-9a04-5254006ba8c8   1Gi        RWO            glusterfs-registry-block   24s
+chc-claim1        Bound     pvc-138a4171-68ca-11e8-9a04-5254006ba8c8   1Gi        RWX            glusterfs-storage          38s
+
+[root@ose-master01 ~]# oc get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                                   STORAGECLASS               REASON    AGE
+pvc-1144a8ae-6868-11e8-9522-5254006ba8c8   10Gi       RWO            Delete           Bound     openshift-infra/metrics-cassandra-1     glusterfs-registry-block             11h
+pvc-138a4171-68ca-11e8-9a04-5254006ba8c8   1Gi        RWX            Delete           Bound     infra-storage/chc-claim1                glusterfs-storage                    2m
+pvc-16cb34f7-6879-11e8-9522-5254006ba8c8   1Gi        RWO            Delete           Bound     chc-test-project/mariadb                glusterfs-storage                    9h
+pvc-1c0407fb-68ca-11e8-9a04-5254006ba8c8   1Gi        RWO            Delete           Bound     infra-storage/chc-block-claim           glusterfs-registry-block             2m
+pvc-a6002f3c-6866-11e8-9522-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-0                    glusterfs-storage                    11h
+pvc-b89a21f6-685d-11e8-9522-5254006ba8c8   1Gi        RWO            Delete           Bound     openshift-ansible-service-broker/etcd   glusterfs-storage                    12h
+pvc-c25aaebe-6866-11e8-9522-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-1                    glusterfs-storage                    11h
+pvc-e07e7f5e-6866-11e8-9522-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-2                    glusterfs-storage                    11h
+pvc-f43b9a5b-6874-11e8-9522-5254006ba8c8   1Gi        RWX            Delete           Bound     chc-test-project/chc-claim1             glusterfs-storage                    10h
+registry-volume                            25Gi       RWX            Retain           Bound     default/registry-claim                                                       13h
+
+=============================================================================================================================
+
+#Examine the state of CNS the by running the following commands (from the master node that has the heketi-cli tool installed):
+
+=============================================================================================================================
+
+[root@ose-master01 ~]# oc project infra-storage
+Already on project "infra-storage" on server "https://ose-master01.example.com:8443".
+
+[root@ose-master01 ~]# export CNS_INFRA_POD1=$(oc get pods -l glusterfs=registry-pod -n infra-storage -o jsonpath="{.items[0].metadata.name}")
+
+[root@ose-master01 ~]# oc rsh ${CNS_INFRA_POD1} systemctl status gluster-blockd
+● gluster-blockd.service - Gluster block storage utility
+   Loaded: loaded (/usr/lib/systemd/system/gluster-blockd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2018-06-05 13:41:27 UTC; 32min ago
+ Main PID: 496 (gluster-blockd)
+   CGroup: /kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podc76d8ebc_685b_11e8_9c3a_52540063e104.slice/docker-03608a89f89c8519e4a5f75e7a924929c3d94241baf3df3385d3509251f2f108.scope/system.slice/gluster-blockd.service
+           └─496 /usr/sbin/gluster-blockd --glfs-lru-count 15 --log-level INF...
+
+Jun 05 13:41:27 ose-infra-node03.example.com systemd[1]: Started Gluster bloc...
+Jun 05 13:41:27 ose-infra-node03.example.com systemd[1]: Starting Gluster blo...
+Jun 05 13:41:27 ose-infra-node03.example.com gluster-blockd[496]: Parameter l...
+Jun 05 13:41:27 ose-infra-node03.example.com gluster-blockd[496]: Parameter l...
+Jun 05 13:41:28 ose-infra-node03.example.com gluster-blockd[496]: Parameter a...
+Jun 05 13:41:28 ose-infra-node03.example.com gluster-blockd[496]: Parameter a...
+Jun 05 13:41:28 ose-infra-node03.example.com gluster-blockd[496]: Last 10 con...
+Jun 05 13:41:28 ose-infra-node03.example.com gluster-blockd[496]: Configurati...
+Hint: Some lines were ellipsized, use -l to show in full.
+
+=============================================================================================================================

@@ -1,0 +1,1070 @@
+
+PLAY [Initialization Checkpoint Start] ***************************************************************************
+
+TASK [Set install initialization 'In Progress'] ******************************************************************
+ok: [ose-master01.example.com]
+
+PLAY [Populate config host groups] *******************************************************************************
+
+TASK [Load group name mapping variables] *************************************************************************
+ok: [localhost]
+
+TASK [Evaluate groups - g_etcd_hosts or g_new_etcd_hosts required] ***********************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_master_hosts or g_new_master_hosts required] *******************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_node_hosts or g_new_node_hosts required] ***********************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_lb_hosts required] *********************************************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_nfs_hosts required] ********************************************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_nfs_hosts is single host] **************************************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - g_glusterfs_hosts required] **************************************************************
+skipping: [localhost]
+
+TASK [Evaluate groups - Fail if no etcd hosts group is defined] **************************************************
+skipping: [localhost]
+
+TASK [Evaluate oo_all_hosts] *************************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+ok: [localhost] => (item=ose-infra-node01.example.com)
+ok: [localhost] => (item=ose-infra-node02.example.com)
+ok: [localhost] => (item=ose-infra-node03.example.com)
+ok: [localhost] => (item=ose-app-node01.example.com)
+ok: [localhost] => (item=ose-app-node02.example.com)
+ok: [localhost] => (item=ose-app-node03.example.com)
+ok: [localhost] => (item=ose-cns-node01.example.com)
+ok: [localhost] => (item=ose-cns-node02.example.com)
+ok: [localhost] => (item=ose-cns-node03.example.com)
+
+TASK [Evaluate oo_masters] ***************************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+
+TASK [Evaluate oo_first_master] **********************************************************************************
+ok: [localhost]
+
+TASK [Evaluate oo_new_etcd_to_config] ****************************************************************************
+
+TASK [Evaluate oo_masters_to_config] *****************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+
+TASK [Evaluate oo_etcd_to_config] ********************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+
+TASK [Evaluate oo_first_etcd] ************************************************************************************
+ok: [localhost]
+
+TASK [Evaluate oo_etcd_hosts_to_upgrade] *************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+
+TASK [Evaluate oo_etcd_hosts_to_backup] **************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+
+TASK [Evaluate oo_nodes_to_config] *******************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+ok: [localhost] => (item=ose-infra-node01.example.com)
+ok: [localhost] => (item=ose-infra-node02.example.com)
+ok: [localhost] => (item=ose-infra-node03.example.com)
+ok: [localhost] => (item=ose-app-node01.example.com)
+ok: [localhost] => (item=ose-app-node02.example.com)
+ok: [localhost] => (item=ose-app-node03.example.com)
+ok: [localhost] => (item=ose-cns-node01.example.com)
+ok: [localhost] => (item=ose-cns-node02.example.com)
+ok: [localhost] => (item=ose-cns-node03.example.com)
+
+TASK [Add master to oo_nodes_to_config] **************************************************************************
+skipping: [localhost] => (item=ose-master01.example.com) 
+skipping: [localhost] => (item=ose-master02.example.com) 
+skipping: [localhost] => (item=ose-master03.example.com) 
+
+TASK [Evaluate oo_lb_to_config] **********************************************************************************
+
+TASK [Evaluate oo_nfs_to_config] *********************************************************************************
+
+TASK [Evaluate oo_glusterfs_to_config] ***************************************************************************
+ok: [localhost] => (item=ose-cns-node01.example.com)
+ok: [localhost] => (item=ose-cns-node02.example.com)
+ok: [localhost] => (item=ose-cns-node03.example.com)
+ok: [localhost] => (item=ose-infra-node01.example.com)
+ok: [localhost] => (item=ose-infra-node02.example.com)
+ok: [localhost] => (item=ose-infra-node03.example.com)
+
+TASK [Evaluate oo_etcd_to_migrate] *******************************************************************************
+ok: [localhost] => (item=ose-master01.example.com)
+ok: [localhost] => (item=ose-master02.example.com)
+ok: [localhost] => (item=ose-master03.example.com)
+
+PLAY [Ensure that all non-node hosts are accessible] *************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-master02.example.com]
+
+PLAY [Initialize basic host facts] *******************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master02.example.com]
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : include_tasks] **************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_sanitize_inventory/tasks/deprecations.yml for ose-master01.example.com, ose-master02.example.com, ose-master03.example.com, ose-cns-node01.example.com, ose-cns-node02.example.com, ose-cns-node03.example.com, ose-infra-node01.example.com, ose-infra-node02.example.com, ose-infra-node03.example.com
+
+TASK [openshift_sanitize_inventory : Check for usage of deprecated variables] ************************************
+ok: [ose-master01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : debug] **********************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : set_stats] ******************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Assign deprecated variables to correct counterparts] ************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_sanitize_inventory/tasks/__deprecations_logging.yml for ose-master01.example.com, ose-master02.example.com, ose-master03.example.com, ose-cns-node01.example.com, ose-cns-node02.example.com, ose-cns-node03.example.com, ose-infra-node01.example.com, ose-infra-node02.example.com, ose-infra-node03.example.com
+included: /usr/share/ansible/openshift-ansible/roles/openshift_sanitize_inventory/tasks/__deprecations_metrics.yml for ose-master01.example.com, ose-master02.example.com, ose-master03.example.com, ose-cns-node01.example.com, ose-cns-node02.example.com, ose-cns-node03.example.com, ose-infra-node01.example.com, ose-infra-node02.example.com, ose-infra-node03.example.com
+
+TASK [openshift_sanitize_inventory : conditional_set_fact] *******************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : set_fact] *******************************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : conditional_set_fact] *******************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] ***************************************
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] ************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] ************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : include_tasks] **************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_sanitize_inventory/tasks/unsupported.yml for ose-master01.example.com, ose-master02.example.com, ose-master03.example.com, ose-cns-node01.example.com, ose-cns-node02.example.com, ose-cns-node03.example.com, ose-infra-node01.example.com, ose-infra-node02.example.com, ose-infra-node03.example.com
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] **********************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_node_dnsmasq_install_network_manager_hook is true] ****
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : set_fact] *******************************************************************
+skipping: [ose-master01.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-master02.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-master03.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-cns-node01.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-cns-node02.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-cns-node03.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-infra-node01.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-infra-node02.example.com] => (item=openshift_hosted_registry_storage_kind) 
+skipping: [ose-infra-node03.example.com] => (item=openshift_hosted_registry_storage_kind) 
+
+TASK [openshift_sanitize_inventory : Ensure that dynamic provisioning is set if using dynamic storage] ***********
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure the hosted registry's GlusterFS storage is configured correctly] *****
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure the hosted registry's GlusterFS storage is configured correctly] *****
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure clusterid is set along with the cloudprovider] ***********************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure ansible_service_broker_remove and ansible_service_broker_install are mutually exclusive] ***
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure template_service_broker_remove and template_service_broker_install are mutually exclusive] ***
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure that all requires vsphere configuration variables are set] ***********
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure removed web console extension variables are not set] *****************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [openshift_sanitize_inventory : Ensure that web console port matches API server port] ***********************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [Detecting Operating System from ostree_booted] *************************************************************
+ok: [ose-master03.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master01.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [set openshift_deployment_type if unset] ********************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [initialize_facts set fact openshift_is_atomic and openshift_is_containerized] ******************************
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [Set use_crio to True if cri-o rpm is requested] ************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [Determine Atomic Host Docker Version] **********************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [assert atomic host docker version is 1.12 or later] ********************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+PLAY [Initialize special first-master variables] *****************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [stat] ******************************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [slurp] *****************************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [set_fact] **************************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [set_fact] **************************************************************************************************
+ok: [ose-master01.example.com]
+
+PLAY [Disable web console if required] ***************************************************************************
+
+TASK [set_fact] **************************************************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+
+PLAY [Install packages necessary for installer] ******************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+skipping: [ose-app-node01.example.com]
+skipping: [ose-app-node02.example.com]
+skipping: [ose-app-node03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+
+TASK [Ensure openshift-ansible installer package deps are installed] *********************************************
+skipping: [ose-master01.example.com] => (item=iproute) 
+skipping: [ose-master01.example.com] => (item=dbus-python) 
+skipping: [ose-master01.example.com] => (item=PyYAML) 
+skipping: [ose-master01.example.com] => (item=python-ipaddress) 
+skipping: [ose-master01.example.com] => (item=yum-utils) 
+skipping: [ose-master02.example.com] => (item=iproute) 
+skipping: [ose-master02.example.com] => (item=dbus-python) 
+skipping: [ose-master02.example.com] => (item=PyYAML) 
+skipping: [ose-master02.example.com] => (item=python-ipaddress) 
+skipping: [ose-master02.example.com] => (item=yum-utils) 
+skipping: [ose-master03.example.com] => (item=iproute) 
+skipping: [ose-master03.example.com] => (item=dbus-python) 
+skipping: [ose-master03.example.com] => (item=PyYAML) 
+skipping: [ose-master03.example.com] => (item=python-ipaddress) 
+skipping: [ose-master03.example.com] => (item=yum-utils) 
+skipping: [ose-infra-node01.example.com] => (item=iproute) 
+skipping: [ose-infra-node01.example.com] => (item=dbus-python) 
+skipping: [ose-infra-node01.example.com] => (item=PyYAML) 
+skipping: [ose-infra-node01.example.com] => (item=python-ipaddress) 
+skipping: [ose-infra-node01.example.com] => (item=yum-utils) 
+skipping: [ose-infra-node02.example.com] => (item=iproute) 
+skipping: [ose-infra-node02.example.com] => (item=dbus-python) 
+skipping: [ose-infra-node02.example.com] => (item=PyYAML) 
+skipping: [ose-infra-node02.example.com] => (item=python-ipaddress) 
+skipping: [ose-infra-node02.example.com] => (item=yum-utils) 
+skipping: [ose-infra-node03.example.com] => (item=iproute) 
+skipping: [ose-infra-node03.example.com] => (item=dbus-python) 
+skipping: [ose-app-node01.example.com]
+skipping: [ose-infra-node03.example.com] => (item=PyYAML) 
+skipping: [ose-infra-node03.example.com] => (item=python-ipaddress) 
+skipping: [ose-infra-node03.example.com] => (item=yum-utils) 
+skipping: [ose-app-node03.example.com]
+skipping: [ose-app-node02.example.com]
+skipping: [ose-cns-node01.example.com] => (item=iproute) 
+skipping: [ose-cns-node01.example.com] => (item=dbus-python) 
+skipping: [ose-cns-node01.example.com] => (item=PyYAML) 
+skipping: [ose-cns-node01.example.com] => (item=python-ipaddress) 
+skipping: [ose-cns-node01.example.com] => (item=yum-utils) 
+skipping: [ose-cns-node02.example.com] => (item=iproute) 
+skipping: [ose-cns-node02.example.com] => (item=dbus-python) 
+skipping: [ose-cns-node02.example.com] => (item=PyYAML) 
+skipping: [ose-cns-node02.example.com] => (item=python-ipaddress) 
+skipping: [ose-cns-node02.example.com] => (item=yum-utils) 
+skipping: [ose-cns-node03.example.com] => (item=iproute) 
+skipping: [ose-cns-node03.example.com] => (item=dbus-python) 
+skipping: [ose-cns-node03.example.com] => (item=PyYAML) 
+skipping: [ose-cns-node03.example.com] => (item=python-ipaddress) 
+skipping: [ose-cns-node03.example.com] => (item=yum-utils) 
+
+TASK [Ensure various deps for running system containers are installed] *******************************************
+skipping: [ose-master01.example.com] => (item=atomic) 
+skipping: [ose-master01.example.com] => (item=ostree) 
+skipping: [ose-master01.example.com] => (item=runc) 
+skipping: [ose-master02.example.com] => (item=atomic) 
+skipping: [ose-master02.example.com] => (item=ostree) 
+skipping: [ose-master02.example.com] => (item=runc) 
+skipping: [ose-master03.example.com] => (item=atomic) 
+skipping: [ose-master03.example.com] => (item=ostree) 
+skipping: [ose-master03.example.com] => (item=runc) 
+skipping: [ose-infra-node01.example.com] => (item=atomic) 
+skipping: [ose-infra-node01.example.com] => (item=ostree) 
+skipping: [ose-infra-node01.example.com] => (item=runc) 
+skipping: [ose-infra-node02.example.com] => (item=atomic) 
+skipping: [ose-infra-node02.example.com] => (item=ostree) 
+skipping: [ose-infra-node02.example.com] => (item=runc) 
+skipping: [ose-infra-node03.example.com] => (item=atomic) 
+skipping: [ose-infra-node03.example.com] => (item=ostree) 
+skipping: [ose-infra-node03.example.com] => (item=runc) 
+skipping: [ose-app-node01.example.com] => (item=atomic) 
+skipping: [ose-app-node01.example.com] => (item=ostree) 
+skipping: [ose-app-node01.example.com] => (item=runc) 
+skipping: [ose-app-node02.example.com] => (item=atomic) 
+skipping: [ose-app-node02.example.com] => (item=ostree) 
+skipping: [ose-app-node02.example.com] => (item=runc) 
+skipping: [ose-app-node03.example.com] => (item=atomic) 
+skipping: [ose-app-node03.example.com] => (item=ostree) 
+skipping: [ose-app-node03.example.com] => (item=runc) 
+skipping: [ose-cns-node01.example.com] => (item=atomic) 
+skipping: [ose-cns-node01.example.com] => (item=ostree) 
+skipping: [ose-cns-node01.example.com] => (item=runc) 
+skipping: [ose-cns-node02.example.com] => (item=atomic) 
+skipping: [ose-cns-node02.example.com] => (item=ostree) 
+skipping: [ose-cns-node02.example.com] => (item=runc) 
+skipping: [ose-cns-node03.example.com] => (item=atomic) 
+skipping: [ose-cns-node03.example.com] => (item=ostree) 
+skipping: [ose-cns-node03.example.com] => (item=runc) 
+
+PLAY [Initialize cluster facts] **********************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+
+TASK [Gather Cluster facts] **************************************************************************************
+ok: [ose-cns-node02.example.com]
+ok: [ose-master01.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node02.example.com]
+
+TASK [Set fact of no_proxy_internal_hostnames] *******************************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+
+TASK [Initialize openshift.node.sdn_mtu] *************************************************************************
+ok: [ose-master01.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-cns-node03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node03.example.com]
+ok: [ose-infra-node02.example.com]
+
+PLAY [Initialize etcd host variables] ****************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master02.example.com]
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+
+TASK [set_fact] **************************************************************************************************
+ok: [ose-master02.example.com]
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+
+TASK [set_fact] **************************************************************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+
+PLAY [Determine openshift_version to configure on first master] **************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [include_role] **********************************************************************************************
+
+TASK [openshift_version : Use openshift.common.version fact as version to configure if already installed] ********
+ok: [ose-master01.example.com]
+
+TASK [openshift_version : include_tasks] *************************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_version/tasks/first_master_rpm_version.yml for ose-master01.example.com
+
+TASK [openshift_version : Set rpm version to configure if openshift_pkg_version specified] ***********************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_version : Set openshift_version for rpm installation] ********************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_version/tasks/check_available_rpms.yml for ose-master01.example.com
+
+TASK [openshift_version : Get available atomic-openshift version] ************************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_version : fail] **********************************************************************************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_version : set_fact] ******************************************************************************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_version : debug] *********************************************************************************
+ok: [ose-master01.example.com] => {
+    "msg": "openshift_pkg_version was not defined. Falling back to -3.9.30"
+}
+
+TASK [openshift_version : set_fact] ******************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_version : debug] *********************************************************************************
+ok: [ose-master01.example.com] => {
+    "msg": "openshift_image_tag was not defined. Falling back to v3.9.30"
+}
+
+TASK [openshift_version : set_fact] ******************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_version : debug] *********************************************************************************
+ok: [ose-master01.example.com] => {
+    "openshift_release": "3.9"
+}
+
+TASK [openshift_version : debug] *********************************************************************************
+ok: [ose-master01.example.com] => {
+    "openshift_image_tag": "v3.9.30"
+}
+
+TASK [openshift_version : debug] *********************************************************************************
+ok: [ose-master01.example.com] => {
+    "openshift_pkg_version": "-3.9.30"
+}
+
+TASK [openshift_version : debug] *********************************************************************************
+ok: [ose-master01.example.com] => {
+    "openshift_version": "3.9.30"
+}
+
+TASK [debug] *****************************************************************************************************
+ok: [ose-master01.example.com] => {
+    "msg": "openshift_pkg_version set to -3.9.30"
+}
+
+PLAY [Set openshift_version for etcd, node, and master hosts] ****************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+
+TASK [set_fact] **************************************************************************************************
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+
+PLAY [Ensure the requested version packages are available.] ******************************************************
+skipping: no hosts matched
+
+PLAY [Verify Requirements] ***************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [Run variable sanity checks] ********************************************************************************
+ok: [ose-master01.example.com]
+
+PLAY [Initialization Checkpoint End] *****************************************************************************
+
+TASK [Set install initialization 'Complete'] *********************************************************************
+ok: [ose-master01.example.com]
+
+PLAY [GlusterFS Install Checkpoint Start] ************************************************************************
+
+TASK [Set GlusterFS install 'In Progress'] ***********************************************************************
+ok: [ose-master01.example.com]
+
+PLAY [Configure GlusterFS hosts] *********************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node03.example.com]
+
+TASK [openshift_storage_glusterfs : Add iptables allow rules] ****************************************************
+ok: [ose-cns-node01.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'})
+ok: [ose-cns-node01.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'})
+ok: [ose-cns-node01.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'})
+ok: [ose-cns-node01.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'})
+ok: [ose-cns-node01.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'})
+ok: [ose-cns-node01.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'})
+ok: [ose-cns-node01.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'})
+ok: [ose-cns-node02.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'})
+ok: [ose-cns-node03.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'})
+
+TASK [openshift_storage_glusterfs : Remove iptables rules] *******************************************************
+
+TASK [openshift_storage_glusterfs : Add firewalld allow rules] ***************************************************
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'}) 
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'}) 
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'}) 
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'}) 
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'}) 
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'}) 
+skipping: [ose-cns-node01.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'}) 
+skipping: [ose-cns-node02.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'}) 
+skipping: [ose-cns-node03.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'}) 
+
+TASK [openshift_storage_glusterfs : Remove firewalld allow rules] ************************************************
+
+TASK [openshift_storage_glusterfs : Ensure systemd has right dependencies] ***************************************
+changed: [ose-cns-node02.example.com]
+changed: [ose-cns-node03.example.com]
+changed: [ose-cns-node01.example.com]
+
+PLAY [Configure GlusterFS registry hosts] ************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-infra-node01.example.com]
+ok: [ose-infra-node03.example.com]
+ok: [ose-infra-node02.example.com]
+
+TASK [openshift_storage_glusterfs : Add iptables allow rules] ****************************************************
+ok: [ose-infra-node01.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'})
+ok: [ose-infra-node01.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'})
+ok: [ose-infra-node01.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'})
+ok: [ose-infra-node01.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'})
+ok: [ose-infra-node01.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'})
+ok: [ose-infra-node01.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'})
+ok: [ose-infra-node01.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'})
+ok: [ose-infra-node02.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'})
+ok: [ose-infra-node03.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'})
+
+TASK [openshift_storage_glusterfs : Remove iptables rules] *******************************************************
+
+TASK [openshift_storage_glusterfs : Add firewalld allow rules] ***************************************************
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'}) 
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'}) 
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'}) 
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'}) 
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'}) 
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'}) 
+skipping: [ose-infra-node01.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'2222/tcp', u'service': u'glusterfs_sshd'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'}) 
+skipping: [ose-infra-node02.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'24007/tcp', u'service': u'glusterfs_management'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'24008/tcp', u'service': u'glusterfs_rdma'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'49152-49251/tcp', u'service': u'glusterfs_bricks'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'24010/tcp', u'service': u'glusterblockd'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'3260/tcp', u'service': u'iscsi-targets'}) 
+skipping: [ose-infra-node03.example.com] => (item={u'port': u'111/tcp', u'service': u'rpcbind'}) 
+
+TASK [openshift_storage_glusterfs : Remove firewalld allow rules] ************************************************
+
+TASK [openshift_storage_glusterfs : Ensure systemd has right dependencies] ***************************************
+changed: [ose-infra-node01.example.com]
+changed: [ose-infra-node03.example.com]
+changed: [ose-infra-node02.example.com]
+
+PLAY [Load kernel modules for nodes] *****************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-infra-node01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+ok: [ose-app-node02.example.com]
+ok: [ose-app-node01.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-app-node03.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+
+TASK [openshift_storage_glusterfs : Ensure device mapper modules loaded] *****************************************
+ok: [ose-infra-node01.example.com]
+ok: [ose-master02.example.com]
+ok: [ose-master03.example.com]
+ok: [ose-master01.example.com]
+ok: [ose-infra-node02.example.com]
+ok: [ose-infra-node03.example.com]
+ok: [ose-app-node01.example.com]
+ok: [ose-app-node02.example.com]
+ok: [ose-app-node03.example.com]
+ok: [ose-cns-node01.example.com]
+ok: [ose-cns-node02.example.com]
+ok: [ose-cns-node03.example.com]
+
+TASK [openshift_storage_glusterfs : load kernel modules] *********************************************************
+skipping: [ose-master01.example.com]
+skipping: [ose-master02.example.com]
+skipping: [ose-master03.example.com]
+skipping: [ose-infra-node01.example.com]
+skipping: [ose-infra-node02.example.com]
+skipping: [ose-infra-node03.example.com]
+skipping: [ose-app-node01.example.com]
+skipping: [ose-app-node02.example.com]
+skipping: [ose-app-node03.example.com]
+skipping: [ose-cns-node01.example.com]
+skipping: [ose-cns-node02.example.com]
+skipping: [ose-cns-node03.example.com]
+
+PLAY [Configure GlusterFS] ***************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Create temp directory for doing work in] *************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Copy the admin client config] ************************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : include_tasks] ***************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_storage_glusterfs/tasks/glusterfs_config.yml for ose-master01.example.com
+
+TASK [openshift_storage_glusterfs : include_tasks] ***************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_storage_glusterfs/tasks/glusterfs_config_facts.yml for ose-master01.example.com
+
+TASK [openshift_storage_glusterfs : set_fact] ********************************************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : include_tasks] ***************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_storage_glusterfs/tasks/glusterfs_common.yml for ose-master01.example.com
+
+TASK [openshift_storage_glusterfs : Make sure heketi-client is installed] ****************************************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Verify heketi-cli is installed] **********************************************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Verify target namespace exists] **********************************************
+changed: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Add namespace service accounts to privileged SCC] ****************************
+changed: [ose-master01.example.com] => (item=default)
+changed: [ose-master01.example.com] => (item=router)
+
+TASK [openshift_storage_glusterfs : Delete pre-existing heketi resources] ****************************************
+skipping: [ose-master01.example.com] => (item={u'kind': u'template,route,service,dc,jobs,secret', u'selector': u'deploy-heketi'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'svc', u'name': u'heketi-storage-endpoints'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'secret', u'name': u'heketi-storage-topology-secret'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'secret', u'name': u'heketi-storage-config-secret'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'template,route,service,dc', u'name': u'heketi-storage'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'svc', u'name': u'heketi-db-storage-endpoints'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'sa', u'name': u'heketi-storage-service-account'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'secret', u'name': u'heketi-storage-admin-secret'}) 
+
+TASK [openshift_storage_glusterfs : Wait for deploy-heketi pods to terminate] ************************************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Wait for heketi pods to terminate] *******************************************
+skipping: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : include_tasks] ***************************************************************
+included: /usr/share/ansible/openshift-ansible/roles/openshift_storage_glusterfs/tasks/glusterfs_deploy.yml for ose-master01.example.com
+
+TASK [openshift_storage_glusterfs : assert] **********************************************************************
+ok: [ose-master01.example.com] => {
+    "changed": false, 
+    "msg": "All assertions passed"
+}
+
+TASK [openshift_storage_glusterfs : Delete pre-existing GlusterFS resources] *************************************
+skipping: [ose-master01.example.com] => (item={u'kind': u'template', u'name': u'glusterfs'}) 
+skipping: [ose-master01.example.com] => (item={u'kind': u'daemonset', u'name': u'glusterfs-storage'}) 
+
+TASK [openshift_storage_glusterfs : Unlabel any existing GlusterFS nodes] ****************************************
+skipping: [ose-master01.example.com] => (item=ose-master01.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-master02.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-master03.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-infra-node01.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-infra-node02.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-infra-node03.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-app-node01.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-app-node02.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-app-node03.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node01.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node02.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node03.example.com) 
+
+TASK [openshift_storage_glusterfs : Delete pre-existing GlusterFS config] ****************************************
+skipping: [ose-master01.example.com] => (item=ose-cns-node01.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node02.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node03.example.com) 
+
+TASK [openshift_storage_glusterfs : Get GlusterFS storage devices state] *****************************************
+skipping: [ose-master01.example.com] => (item=ose-cns-node01.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node02.example.com) 
+skipping: [ose-master01.example.com] => (item=ose-cns-node03.example.com) 
+
+TASK [openshift_storage_glusterfs : Clear GlusterFS storage device contents] *************************************
+skipping: [ose-master01.example.com] => (item={'skipped': True, '_ansible_no_log': False, 'skip_reason': u'Conditional result was False', '_ansible_item_result': True, 'item': u'ose-cns-node01.example.com', 'changed': False, '_ansible_ignore_errors': None}) 
+skipping: [ose-master01.example.com] => (item={'skipped': True, '_ansible_no_log': False, 'skip_reason': u'Conditional result was False', '_ansible_item_result': True, 'item': u'ose-cns-node02.example.com', 'changed': False, '_ansible_ignore_errors': None}) 
+skipping: [ose-master01.example.com] => (item={'skipped': True, '_ansible_no_log': False, 'skip_reason': u'Conditional result was False', '_ansible_item_result': True, 'item': u'ose-cns-node03.example.com', 'changed': False, '_ansible_ignore_errors': None}) 
+
+TASK [openshift_storage_glusterfs : Label GlusterFS nodes] *******************************************************
+changed: [ose-master01.example.com] => (item=ose-cns-node01.example.com)
+changed: [ose-master01.example.com] => (item=ose-cns-node02.example.com)
+changed: [ose-master01.example.com] => (item=ose-cns-node03.example.com)
+
+TASK [openshift_storage_glusterfs : Copy GlusterFS DaemonSet template] *******************************************
+changed: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Create GlusterFS template] ***************************************************
+changed: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Check GlusterFS DaemonSet status] ********************************************
+ok: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Deploy GlusterFS pods] *******************************************************
+changed: [ose-master01.example.com]
+
+TASK [openshift_storage_glusterfs : Wait for GlusterFS pods] *****************************************************
+FAILED - RETRYING: Wait for GlusterFS pods (30 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (29 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (28 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (27 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (26 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (25 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (24 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (23 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (22 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (21 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (20 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (19 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (18 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (17 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (16 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (15 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (14 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (13 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (12 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (11 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (10 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (9 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (8 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (7 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (6 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (5 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (4 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (3 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (2 retries left).
+FAILED - RETRYING: Wait for GlusterFS pods (1 retries left).
+fatal: [ose-master01.example.com]: FAILED! => {"attempts": 30, "changed": false, "results": {"cmd": "/usr/local/bin/oc get pod --selector=glusterfs=storage-pod -o json -n app-storage", "results": [{"apiVersion": "v1", "items": [{"apiVersion": "v1", "kind": "Pod", "metadata": {"annotations": {"openshift.io/scc": "privileged"}, "creationTimestamp": "2018-06-12T13:16:48Z", "generateName": "glusterfs-storage-", "labels": {"controller-revision-hash": "2107259319", "glusterfs": "storage-pod", "glusterfs-node": "pod", "pod-template-generation": "1"}, "name": "glusterfs-storage-5mhx5", "namespace": "app-storage", "ownerReferences": [{"apiVersion": "extensions/v1beta1", "blockOwnerDeletion": true, "controller": true, "kind": "DaemonSet", "name": "glusterfs-storage", "uid": "dcbe0a75-6e42-11e8-8e9a-5254006ba8c8"}], "resourceVersion": "72698", "selfLink": "/api/v1/namespaces/app-storage/pods/glusterfs-storage-5mhx5", "uid": "dccba948-6e42-11e8-8e9a-5254006ba8c8"}, "spec": {"containers": [{"env": [{"name": "GB_GLFS_LRU_COUNT", "value": "15"}, {"name": "TCMU_LOGDIR", "value": "/var/log/glusterfs/gluster-block"}, {"name": "GB_LOGDIR", "value": "/var/log/glusterfs/gluster-block"}], "image": "rhgs3/rhgs-server-rhel7:latest", "imagePullPolicy": "IfNotPresent", "livenessProbe": {"exec": {"command": ["/bin/bash", "-c", "systemctl status glusterd.service"]}, "failureThreshold": 50, "initialDelaySeconds": 40, "periodSeconds": 25, "successThreshold": 1, "timeoutSeconds": 3}, "name": "glusterfs", "readinessProbe": {"exec": {"command": ["/bin/bash", "-c", "systemctl status glusterd.service"]}, "failureThreshold": 50, "initialDelaySeconds": 40, "periodSeconds": 25, "successThreshold": 1, "timeoutSeconds": 3}, "resources": {"requests": {"cpu": "100m", "memory": "100Mi"}}, "securityContext": {"capabilities": {}, "privileged": true}, "terminationMessagePath": "/dev/termination-log", "terminationMessagePolicy": "File", "volumeMounts": [{"mountPath": "/var/lib/heketi", "name": "glusterfs-heketi"}, {"mountPath": "/run", "name": "glusterfs-run"}, {"mountPath": "/run/lvm", "name": "glusterfs-lvm"}, {"mountPath": "/etc/glusterfs", "name": "glusterfs-etc"}, {"mountPath": "/var/log/glusterfs", "name": "glusterfs-logs"}, {"mountPath": "/var/lib/glusterd", "name": "glusterfs-config"}, {"mountPath": "/dev", "name": "glusterfs-dev"}, {"mountPath": "/var/lib/misc/glusterfsd", "name": "glusterfs-misc"}, {"mountPath": "/sys/fs/cgroup", "name": "glusterfs-cgroup", "readOnly": true}, {"mountPath": "/etc/ssl", "name": "glusterfs-ssl", "readOnly": true}, {"mountPath": "/usr/lib/modules", "name": "kernel-modules", "readOnly": true}, {"mountPath": "/etc/target", "name": "glusterfs-target"}, {"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount", "name": "default-token-z4vnc", "readOnly": true}]}], "dnsPolicy": "ClusterFirst", "hostNetwork": true, "imagePullSecrets": [{"name": "default-dockercfg-9nfx7"}], "nodeName": "ose-cns-node02.example.com", "nodeSelector": {"glusterfs": "storage-host"}, "restartPolicy": "Always", "schedulerName": "default-scheduler", "securityContext": {}, "serviceAccount": "default", "serviceAccountName": "default", "terminationGracePeriodSeconds": 30, "tolerations": [{"effect": "NoSchedule", "key": "node.kubernetes.io/memory-pressure", "operator": "Exists"}, {"effect": "NoExecute", "key": "node.kubernetes.io/unreachable", "operator": "Exists"}, {"effect": "NoSchedule", "key": "node.kubernetes.io/disk-pressure", "operator": "Exists"}, {"effect": "NoExecute", "key": "node.kubernetes.io/not-ready", "operator": "Exists"}], "volumes": [{"hostPath": {"path": "/var/lib/heketi", "type": ""}, "name": "glusterfs-heketi"}, {"emptyDir": {}, "name": "glusterfs-run"}, {"hostPath": {"path": "/run/lvm", "type": ""}, "name": "glusterfs-lvm"}, {"hostPath": {"path": "/etc/glusterfs", "type": ""}, "name": "glusterfs-etc"}, {"hostPath": {"path": "/var/log/glusterfs", "type": ""}, "name": "glusterfs-logs"}, {"hostPath": {"path": "/var/lib/glusterd", "type": ""}, "name": "glusterfs-config"}, {"hostPath": {"path": "/dev", "type": ""}, "name": "glusterfs-dev"}, {"hostPath": {"path": "/var/lib/misc/glusterfsd", "type": ""}, "name": "glusterfs-misc"}, {"hostPath": {"path": "/sys/fs/cgroup", "type": ""}, "name": "glusterfs-cgroup"}, {"hostPath": {"path": "/etc/ssl", "type": ""}, "name": "glusterfs-ssl"}, {"hostPath": {"path": "/usr/lib/modules", "type": ""}, "name": "kernel-modules"}, {"hostPath": {"path": "/etc/target", "type": ""}, "name": "glusterfs-target"}, {"name": "default-token-z4vnc", "secret": {"defaultMode": 420, "secretName": "default-token-z4vnc"}}]}, "status": {"conditions": [{"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:16:48Z", "status": "True", "type": "Initialized"}, {"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:16:48Z", "message": "containers with unready status: [glusterfs]", "reason": "ContainersNotReady", "status": "False", "type": "Ready"}, {"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:17:03Z", "status": "True", "type": "PodScheduled"}], "containerStatuses": [{"image": "rhgs3/rhgs-server-rhel7:latest", "imageID": "", "lastState": {}, "name": "glusterfs", "ready": false, "restartCount": 0, "state": {"waiting": {"reason": "ContainerCreating"}}}], "hostIP": "192.168.122.61", "phase": "Pending", "podIP": "192.168.122.61", "qosClass": "Burstable", "startTime": "2018-06-12T13:16:48Z"}}, {"apiVersion": "v1", "kind": "Pod", "metadata": {"annotations": {"openshift.io/scc": "privileged"}, "creationTimestamp": "2018-06-12T13:16:48Z", "generateName": "glusterfs-storage-", "labels": {"controller-revision-hash": "2107259319", "glusterfs": "storage-pod", "glusterfs-node": "pod", "pod-template-generation": "1"}, "name": "glusterfs-storage-674x8", "namespace": "app-storage", "ownerReferences": [{"apiVersion": "extensions/v1beta1", "blockOwnerDeletion": true, "controller": true, "kind": "DaemonSet", "name": "glusterfs-storage", "uid": "dcbe0a75-6e42-11e8-8e9a-5254006ba8c8"}], "resourceVersion": "72695", "selfLink": "/api/v1/namespaces/app-storage/pods/glusterfs-storage-674x8", "uid": "dcc48f26-6e42-11e8-8e9a-5254006ba8c8"}, "spec": {"containers": [{"env": [{"name": "GB_GLFS_LRU_COUNT", "value": "15"}, {"name": "TCMU_LOGDIR", "value": "/var/log/glusterfs/gluster-block"}, {"name": "GB_LOGDIR", "value": "/var/log/glusterfs/gluster-block"}], "image": "rhgs3/rhgs-server-rhel7:latest", "imagePullPolicy": "IfNotPresent", "livenessProbe": {"exec": {"command": ["/bin/bash", "-c", "systemctl status glusterd.service"]}, "failureThreshold": 50, "initialDelaySeconds": 40, "periodSeconds": 25, "successThreshold": 1, "timeoutSeconds": 3}, "name": "glusterfs", "readinessProbe": {"exec": {"command": ["/bin/bash", "-c", "systemctl status glusterd.service"]}, "failureThreshold": 50, "initialDelaySeconds": 40, "periodSeconds": 25, "successThreshold": 1, "timeoutSeconds": 3}, "resources": {"requests": {"cpu": "100m", "memory": "100Mi"}}, "securityContext": {"capabilities": {}, "privileged": true}, "terminationMessagePath": "/dev/termination-log", "terminationMessagePolicy": "File", "volumeMounts": [{"mountPath": "/var/lib/heketi", "name": "glusterfs-heketi"}, {"mountPath": "/run", "name": "glusterfs-run"}, {"mountPath": "/run/lvm", "name": "glusterfs-lvm"}, {"mountPath": "/etc/glusterfs", "name": "glusterfs-etc"}, {"mountPath": "/var/log/glusterfs", "name": "glusterfs-logs"}, {"mountPath": "/var/lib/glusterd", "name": "glusterfs-config"}, {"mountPath": "/dev", "name": "glusterfs-dev"}, {"mountPath": "/var/lib/misc/glusterfsd", "name": "glusterfs-misc"}, {"mountPath": "/sys/fs/cgroup", "name": "glusterfs-cgroup", "readOnly": true}, {"mountPath": "/etc/ssl", "name": "glusterfs-ssl", "readOnly": true}, {"mountPath": "/usr/lib/modules", "name": "kernel-modules", "readOnly": true}, {"mountPath": "/etc/target", "name": "glusterfs-target"}, {"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount", "name": "default-token-z4vnc", "readOnly": true}]}], "dnsPolicy": "ClusterFirst", "hostNetwork": true, "imagePullSecrets": [{"name": "default-dockercfg-9nfx7"}], "nodeName": "ose-cns-node03.example.com", "nodeSelector": {"glusterfs": "storage-host"}, "restartPolicy": "Always", "schedulerName": "default-scheduler", "securityContext": {}, "serviceAccount": "default", "serviceAccountName": "default", "terminationGracePeriodSeconds": 30, "tolerations": [{"effect": "NoSchedule", "key": "node.kubernetes.io/memory-pressure", "operator": "Exists"}, {"effect": "NoSchedule", "key": "node.kubernetes.io/disk-pressure", "operator": "Exists"}, {"effect": "NoExecute", "key": "node.kubernetes.io/not-ready", "operator": "Exists"}, {"effect": "NoExecute", "key": "node.kubernetes.io/unreachable", "operator": "Exists"}], "volumes": [{"hostPath": {"path": "/var/lib/heketi", "type": ""}, "name": "glusterfs-heketi"}, {"emptyDir": {}, "name": "glusterfs-run"}, {"hostPath": {"path": "/run/lvm", "type": ""}, "name": "glusterfs-lvm"}, {"hostPath": {"path": "/etc/glusterfs", "type": ""}, "name": "glusterfs-etc"}, {"hostPath": {"path": "/var/log/glusterfs", "type": ""}, "name": "glusterfs-logs"}, {"hostPath": {"path": "/var/lib/glusterd", "type": ""}, "name": "glusterfs-config"}, {"hostPath": {"path": "/dev", "type": ""}, "name": "glusterfs-dev"}, {"hostPath": {"path": "/var/lib/misc/glusterfsd", "type": ""}, "name": "glusterfs-misc"}, {"hostPath": {"path": "/sys/fs/cgroup", "type": ""}, "name": "glusterfs-cgroup"}, {"hostPath": {"path": "/etc/ssl", "type": ""}, "name": "glusterfs-ssl"}, {"hostPath": {"path": "/usr/lib/modules", "type": ""}, "name": "kernel-modules"}, {"hostPath": {"path": "/etc/target", "type": ""}, "name": "glusterfs-target"}, {"name": "default-token-z4vnc", "secret": {"defaultMode": 420, "secretName": "default-token-z4vnc"}}]}, "status": {"conditions": [{"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:16:48Z", "status": "True", "type": "Initialized"}, {"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:16:48Z", "message": "containers with unready status: [glusterfs]", "reason": "ContainersNotReady", "status": "False", "type": "Ready"}, {"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:17:02Z", "status": "True", "type": "PodScheduled"}], "containerStatuses": [{"image": "rhgs3/rhgs-server-rhel7:latest", "imageID": "", "lastState": {}, "name": "glusterfs", "ready": false, "restartCount": 0, "state": {"waiting": {"reason": "ContainerCreating"}}}], "hostIP": "192.168.122.62", "phase": "Pending", "podIP": "192.168.122.62", "qosClass": "Burstable", "startTime": "2018-06-12T13:16:48Z"}}, {"apiVersion": "v1", "kind": "Pod", "metadata": {"annotations": {"openshift.io/scc": "privileged"}, "creationTimestamp": "2018-06-12T13:16:48Z", "generateName": "glusterfs-storage-", "labels": {"controller-revision-hash": "2107259319", "glusterfs": "storage-pod", "glusterfs-node": "pod", "pod-template-generation": "1"}, "name": "glusterfs-storage-vm2ds", "namespace": "app-storage", "ownerReferences": [{"apiVersion": "extensions/v1beta1", "blockOwnerDeletion": true, "controller": true, "kind": "DaemonSet", "name": "glusterfs-storage", "uid": "dcbe0a75-6e42-11e8-8e9a-5254006ba8c8"}], "resourceVersion": "72701", "selfLink": "/api/v1/namespaces/app-storage/pods/glusterfs-storage-vm2ds", "uid": "dccaf012-6e42-11e8-8e9a-5254006ba8c8"}, "spec": {"containers": [{"env": [{"name": "GB_GLFS_LRU_COUNT", "value": "15"}, {"name": "TCMU_LOGDIR", "value": "/var/log/glusterfs/gluster-block"}, {"name": "GB_LOGDIR", "value": "/var/log/glusterfs/gluster-block"}], "image": "rhgs3/rhgs-server-rhel7:latest", "imagePullPolicy": "IfNotPresent", "livenessProbe": {"exec": {"command": ["/bin/bash", "-c", "systemctl status glusterd.service"]}, "failureThreshold": 50, "initialDelaySeconds": 40, "periodSeconds": 25, "successThreshold": 1, "timeoutSeconds": 3}, "name": "glusterfs", "readinessProbe": {"exec": {"command": ["/bin/bash", "-c", "systemctl status glusterd.service"]}, "failureThreshold": 50, "initialDelaySeconds": 40, "periodSeconds": 25, "successThreshold": 1, "timeoutSeconds": 3}, "resources": {"requests": {"cpu": "100m", "memory": "100Mi"}}, "securityContext": {"capabilities": {}, "privileged": true}, "terminationMessagePath": "/dev/termination-log", "terminationMessagePolicy": "File", "volumeMounts": [{"mountPath": "/var/lib/heketi", "name": "glusterfs-heketi"}, {"mountPath": "/run", "name": "glusterfs-run"}, {"mountPath": "/run/lvm", "name": "glusterfs-lvm"}, {"mountPath": "/etc/glusterfs", "name": "glusterfs-etc"}, {"mountPath": "/var/log/glusterfs", "name": "glusterfs-logs"}, {"mountPath": "/var/lib/glusterd", "name": "glusterfs-config"}, {"mountPath": "/dev", "name": "glusterfs-dev"}, {"mountPath": "/var/lib/misc/glusterfsd", "name": "glusterfs-misc"}, {"mountPath": "/sys/fs/cgroup", "name": "glusterfs-cgroup", "readOnly": true}, {"mountPath": "/etc/ssl", "name": "glusterfs-ssl", "readOnly": true}, {"mountPath": "/usr/lib/modules", "name": "kernel-modules", "readOnly": true}, {"mountPath": "/etc/target", "name": "glusterfs-target"}, {"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount", "name": "default-token-z4vnc", "readOnly": true}]}], "dnsPolicy": "ClusterFirst", "hostNetwork": true, "imagePullSecrets": [{"name": "default-dockercfg-9nfx7"}], "nodeName": "ose-cns-node01.example.com", "nodeSelector": {"glusterfs": "storage-host"}, "restartPolicy": "Always", "schedulerName": "default-scheduler", "securityContext": {}, "serviceAccount": "default", "serviceAccountName": "default", "terminationGracePeriodSeconds": 30, "tolerations": [{"effect": "NoSchedule", "key": "node.kubernetes.io/memory-pressure", "operator": "Exists"}, {"effect": "NoExecute", "key": "node.kubernetes.io/not-ready", "operator": "Exists"}, {"effect": "NoExecute", "key": "node.kubernetes.io/unreachable", "operator": "Exists"}, {"effect": "NoSchedule", "key": "node.kubernetes.io/disk-pressure", "operator": "Exists"}], "volumes": [{"hostPath": {"path": "/var/lib/heketi", "type": ""}, "name": "glusterfs-heketi"}, {"emptyDir": {}, "name": "glusterfs-run"}, {"hostPath": {"path": "/run/lvm", "type": ""}, "name": "glusterfs-lvm"}, {"hostPath": {"path": "/etc/glusterfs", "type": ""}, "name": "glusterfs-etc"}, {"hostPath": {"path": "/var/log/glusterfs", "type": ""}, "name": "glusterfs-logs"}, {"hostPath": {"path": "/var/lib/glusterd", "type": ""}, "name": "glusterfs-config"}, {"hostPath": {"path": "/dev", "type": ""}, "name": "glusterfs-dev"}, {"hostPath": {"path": "/var/lib/misc/glusterfsd", "type": ""}, "name": "glusterfs-misc"}, {"hostPath": {"path": "/sys/fs/cgroup", "type": ""}, "name": "glusterfs-cgroup"}, {"hostPath": {"path": "/etc/ssl", "type": ""}, "name": "glusterfs-ssl"}, {"hostPath": {"path": "/usr/lib/modules", "type": ""}, "name": "kernel-modules"}, {"hostPath": {"path": "/etc/target", "type": ""}, "name": "glusterfs-target"}, {"name": "default-token-z4vnc", "secret": {"defaultMode": 420, "secretName": "default-token-z4vnc"}}]}, "status": {"conditions": [{"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:16:48Z", "status": "True", "type": "Initialized"}, {"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:16:48Z", "message": "containers with unready status: [glusterfs]", "reason": "ContainersNotReady", "status": "False", "type": "Ready"}, {"lastProbeTime": null, "lastTransitionTime": "2018-06-12T13:17:04Z", "status": "True", "type": "PodScheduled"}], "containerStatuses": [{"image": "rhgs3/rhgs-server-rhel7:latest", "imageID": "", "lastState": {}, "name": "glusterfs", "ready": false, "restartCount": 0, "state": {"waiting": {"reason": "ContainerCreating"}}}], "hostIP": "192.168.122.60", "phase": "Pending", "podIP": "192.168.122.60", "qosClass": "Burstable", "startTime": "2018-06-12T13:16:48Z"}}], "kind": "List", "metadata": {"resourceVersion": "", "selfLink": ""}}], "returncode": 0}, "state": "list"}
+	to retry, use: --limit @/usr/share/ansible/openshift-ansible/playbooks/openshift-glusterfs/config.retry
+
+PLAY RECAP *******************************************************************************************************
+localhost                  : ok=12   changed=0    unreachable=0    failed=0   
+ose-app-node01.example.com : ok=2    changed=0    unreachable=0    failed=0   
+ose-app-node02.example.com : ok=2    changed=0    unreachable=0    failed=0   
+ose-app-node03.example.com : ok=2    changed=0    unreachable=0    failed=0   
+ose-cns-node01.example.com : ok=21   changed=1    unreachable=0    failed=0   
+ose-cns-node02.example.com : ok=21   changed=1    unreachable=0    failed=0   
+ose-cns-node03.example.com : ok=21   changed=1    unreachable=0    failed=0   
+ose-infra-node01.example.com : ok=21   changed=1    unreachable=0    failed=0   
+ose-infra-node02.example.com : ok=21   changed=1    unreachable=0    failed=0   
+ose-infra-node03.example.com : ok=21   changed=1    unreachable=0    failed=0   
+ose-master01.example.com   : ok=62   changed=6    unreachable=0    failed=1   
+ose-master02.example.com   : ok=24   changed=0    unreachable=0    failed=0   
+ose-master03.example.com   : ok=24   changed=0    unreachable=0    failed=0   
+
+
+INSTALLER STATUS *************************************************************************************************
+Initialization             : Complete (0:00:55)
+GlusterFS Install          : In Progress (0:05:58)
+	This phase can be restarted by running: playbooks/openshift-glusterfs/config.yml
+

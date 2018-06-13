@@ -163,3 +163,4 @@ openshift_storage_glusterfs_registry_block_storageclass_default=false
 
 #openshift_storageclass_default=false
 
+# https://bugzilla.redhat.com/show_bug.cgi?id=1583500

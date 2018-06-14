@@ -39,27 +39,18 @@ openshift_deployment_type=openshift-enterprise
 openshift_release=v3.9
 osm_default_subdomain=apps.ose-master.example.com
 openshift_master_default_subdomain=apps.ose-master.example.com
-openshift_master_cluster_hostname=master.apps.ose-master.example.com
-openshift_master_cluster_public_hostname=master.apps.ose-master.example.com
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 openshift_examples_modify_imagestreams=true
-openshift_master_api_port=443
-openshift_master_console_port=443
-openshift_master_cluster_method=native
-openshift_node_local_quota_per_fsgroup=512Mi
-openshift_hostname_check=false
-openshift_builddefaults_nodeselectors={'region':'infra'}
+#openshift_builddefaults_nodeselectors={'region':'infra'}
 openshift_hosted_router_selector='region=infra'
 openshift_hosted_router_replicas=3
-openshift_enable_service_catalog=true
-template_service_broker_install=true
 
 # Debug level for all OpenShift components (Defaults to 2)
 debug_level=2
 
 # Manage openshift example imagestreams and templates during install and upgrade
-openshift_install_examples=true
-#docker_version="1.13.1"
+#openshift_install_examples=true
+docker_version="1.13.1"
 
 
 # htpasswd auth
@@ -79,12 +70,10 @@ osm_cockpit_plugins=['cockpit-kubernetes']
 openshift_master_min_tls_version=VersionTLS12
 openshift_node_min_tls_version=VersionTLS12
 
-# Openshift Registry Options
-openshift_hosted_registry_replicas=3 
-#openshift_registry_selector="role=infra" 
-openshift_hosted_registry_storage_kind=glusterfs 
+openshift_hosted_registry_replicas=3
+openshift_hosted_registry_storage_kind=glusterfs
 openshift_hosted_registry_storage_volume_size=25Gi
-openshift_hosted_registry_selector={"region":"infra"}
+openshift_registry_selector="role=infra"
 
 # Prometheus deployment
 openshift_hosted_prometheus_deploy=true
@@ -116,25 +105,25 @@ openshift_master_dynamic_provisioning_enabled=true
 
 # metrics (modify to =true when deploying metrics via specific playbook and uncomment the lines below)
 openshift_metrics_install_metrics=true
-#openshift_metrics_hawkular_nodeselector={"region":"infra"}       
-#openshift_metrics_cassandra_nodeselector={"region":"infra"}
-#openshift_metrics_heapster_nodeselector={"region":"infra"}
-#openshift_metrics_cassanda_pvc_storage_class_name="glusterfs-registry-block"
-#openshift_metrics_cassandra_pvc_size=10Gi  
-#openshift_metrics_storage_kind=dynamic                           
-#openshift_metrics_hawkular_hostname=hawkular-metrics.apps.ose-master.example.com
-#openshift_metrics_storage_volume_size=10
+openshift_metrics_hawkular_nodeselector={"region":"infra"}       
+openshift_metrics_cassandra_nodeselector={"region":"infra"}
+openshift_metrics_heapster_nodeselector={"region":"infra"}
+openshift_metrics_cassanda_pvc_storage_class_name="glusterfs-registry-block"
+openshift_metrics_cassandra_pvc_size=10Gi  
+openshift_metrics_storage_kind=dynamic                           
+openshift_metrics_hawkular_hostname=hawkular-metrics.apps.ose-master.example.com
+openshift_metrics_storage_volume_size=10
 
 # logging (modify to =true when deploying logging via specific playbook and uncomment the lines below)
 openshift_logging_install_logging=true                     
-#openshift_logging_es_cluster_size=3  
-#openshift_logging_kibana_hostname=kibana.apps.ose-master.example.com
-#openshift_logging_es_nodeselector={"region":"infra"}              
-#openshift_logging_kibana_nodeselector={"region":"infra"}
-#openshift_logging_curator_nodeselector={"region":"infra"}
-#openshift_logging_es_pvc_storage_class_name="glusterfs-registry-block"
-#openshift_logging_es_pvc_size=10Gi  
-#openshift_logging_es_pvc_dynamic=true
+openshift_logging_es_cluster_size=3  
+openshift_logging_kibana_hostname=kibana.apps.ose-master.example.com
+openshift_logging_es_nodeselector={"region":"infra"}              
+openshift_logging_kibana_nodeselector={"region":"infra"}
+openshift_logging_curator_nodeselector={"region":"infra"}
+openshift_logging_es_pvc_storage_class_name="glusterfs-registry-block"
+openshift_logging_es_pvc_size=10Gi  
+openshift_logging_es_pvc_dynamic=true
 
 # this is required otherwise it will fail openshift_sanitize_inventory. cloud provider is not configured but dynamic is set
 dynamic_volumes_check=False

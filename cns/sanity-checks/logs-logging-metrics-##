@@ -36,4 +36,38 @@ logging-fluentd-ntqs4                     1/1       Running   0          19m
 logging-fluentd-p8m28                     1/1       Running   0          19m
 logging-fluentd-w7c5n                     1/1       Running   0          19m
 logging-kibana-1-mdx5g                    2/2       Running   0          18m
+=============================================================================================================
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                                   STORAGECLASS               REASON    AGE
+pvc-187cf927-7025-11e8-bcaf-5254006ba8c8   10Gi       RWO            Delete           Bound     openshift-infra/metrics-cassandra-1     glusterfs-registry-block             11m
+pvc-c78ce76d-7021-11e8-bcaf-5254006ba8c8   1Gi        RWO            Delete           Bound     openshift-ansible-service-broker/etcd   glusterfs-storage                    35m
+pvc-c9db1a17-7022-11e8-bcaf-5254006ba8c8   1Gi        RWO            Delete           Bound     infra-storage/chc-block-claim           glusterfs-registry-block             27m
+pvc-ccb932fa-7022-11e8-bcaf-5254006ba8c8   5Gi        RWX            Delete           Bound     infra-storage/cns-file-claim1           glusterfs-storage                    28m
+pvc-d2c4521b-7023-11e8-bcaf-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-1                    glusterfs-registry-block             20m
+pvc-f82e5a88-7023-11e8-bcaf-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-2                    glusterfs-registry-block             19m
+registry-volume                            25Gi       RWX            Retain           Bound     default/registry-claim                                                       3h
+[root@ose-master01 ~]# oc get po -n logging
+NAME                                      READY     STATUS    RESTARTS   AGE
+logging-curator-2-shx2z                   1/1       Running   0          17m
+logging-es-data-master-7t7670jh-2-6zkgp   2/2       Running   0          15m
+logging-es-data-master-cs1lqgu1-1-d7x6t   2/2       Running   0          16m
+logging-es-data-master-p0x2b2vs-1-tq7kp   2/2       Running   0          16m
+logging-fluentd-5bcd8                     1/1       Running   0          44m
+logging-fluentd-5g94b                     1/1       Running   0          45m
+logging-fluentd-88rvd                     1/1       Running   0          44m
+logging-fluentd-99rfl                     1/1       Running   0          45m
+logging-fluentd-9khhj                     1/1       Running   0          45m
+logging-fluentd-cxzzt                     1/1       Running   0          45m
+logging-fluentd-kt6dj                     1/1       Running   0          44m
+logging-fluentd-l75k8                     1/1       Running   0          46m
+logging-fluentd-nlwxq                     1/1       Running   0          45m
+logging-fluentd-ntqs4                     1/1       Running   0          45m
+logging-fluentd-p8m28                     1/1       Running   0          46m
+logging-fluentd-w7c5n                     1/1       Running   0          45m
+logging-kibana-2-nxltg                    2/2       Running   0          19m
+[root@ose-master01 ~]# oc get po -n openshift-infra 
+NAME                         READY     STATUS    RESTARTS   AGE
+hawkular-cassandra-1-h2kq5   1/1       Running   0          11m
+hawkular-metrics-fmft5       1/1       Running   3          11m
+heapster-sxnnc               1/1       Running   1          11m
+=================================================================================================
 

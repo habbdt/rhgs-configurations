@@ -1,0 +1,165 @@
+[root@ose-master01 ~]# oc get sc
+NAME                          PROVISIONER                AGE
+glusterfs-registry-block      gluster.org/glusterblock   13h
+glusterfs-storage (default)   kubernetes.io/glusterfs    16h
+[root@ose-master01 ~]# oc project app-storage
+Already on project "app-storage" on server "https://ose-master01.example.com:8443".
+[root@ose-master01 ~]# oc get po
+NAME                      READY     STATUS    RESTARTS   AGE
+glusterfs-storage-42g2c   1/1       Running   1          16h
+glusterfs-storage-c584s   1/1       Running   1          16h
+glusterfs-storage-w6r69   1/1       Running   1          16h
+heketi-storage-1-twfwf    1/1       Running   1          16h
+[root@ose-master01 ~]# source heketi-exports-app 
+[root@ose-master01 ~]# curl -w '\n' ${HEKETI_CLI_SERVER}/hello
+Hello from Heketi
+[root@ose-master01 ~]# heketi-cli cluster list
+Clusters:
+Id:9f06f19d44acc45dc7238ed41ec06a91 [file][block]
+[root@ose-master01 ~]# heketi-cli topology info | less
+[root@ose-master01 ~]# heketi-cli volume list
+Id:480aa0c50cbf8de20c927b3ecd59c1f3    Cluster:9f06f19d44acc45dc7238ed41ec06a91    Name:heketidbstorage
+Id:7d648d54030bf1621ed8ae192898f13b    Cluster:9f06f19d44acc45dc7238ed41ec06a91    Name:vol_7d648d54030bf1621ed8ae192898f13b
+[root@ose-master01 ~]# oc project infra-storage
+Now using project "infra-storage" on server "https://ose-master01.example.com:8443".
+[root@ose-master01 ~]# oc get po
+NAME                                           READY     STATUS    RESTARTS   AGE
+glusterblock-registry-provisioner-dc-1-lcwqw   1/1       Running   1          16h
+glusterfs-registry-84qbm                       1/1       Running   1          16h
+glusterfs-registry-bxddx                       1/1       Running   1          16h
+glusterfs-registry-rqwrq                       1/1       Running   1          16h
+heketi-registry-1-z7bpl                        1/1       Running   1          16h
+[root@ose-master01 ~]# source  heketi-exports-infra 
+[root@ose-master01 ~]# curl -w '\n' ${HEKETI_CLI_SERVER}/hello
+Hello from Heketi
+[root@ose-master01 ~]# heketi-cli cluster list
+Clusters:
+Id:03ef18a6e1654aafc5b80cbfc8fcfbba [file][block]
+[root@ose-master01 ~]# heketi-cli volume list
+Id:2ca1612957cd3bc4bcd6afd658a5b671    Cluster:03ef18a6e1654aafc5b80cbfc8fcfbba    Name:heketidbstorage
+Id:9ed472afbd39788f10fe11a64d57d558    Cluster:03ef18a6e1654aafc5b80cbfc8fcfbba    Name:vol_9ed472afbd39788f10fe11a64d57d558 [block]
+Id:e0ff39a92baa10bbec6c168b19b9c903    Cluster:03ef18a6e1654aafc5b80cbfc8fcfbba    Name:glusterfs-registry-volume
+[root@ose-master01 ~]# oc get pvc -n default
+NAME             STATUS    VOLUME            CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+registry-claim   Bound     registry-volume   25Gi       RWX                           16h
+[root@ose-master01 ~]# oc describe dc/docker-registry -n default | grep -A3 Volumes
+  Volumes:
+   registry-storage:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  registry-claim
+[root@ose-master01 ~]# oc get pvc --all-namespaces
+NAMESPACE                          NAME                  STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE
+default                            registry-claim        Bound     registry-volume                            25Gi       RWX                                       16h
+infra-storage                      chc-block-claim       Bound     pvc-ab0fdff7-7057-11e8-8087-5254006ba8c8   1Gi        RWO            glusterfs-registry-block   13h
+logging                            logging-es-0          Bound     pvc-45d0343d-7059-11e8-8087-5254006ba8c8   10Gi       RWO            glusterfs-registry-block   12h
+logging                            logging-es-1          Bound     pvc-60fc10a3-7059-11e8-8087-5254006ba8c8   10Gi       RWO            glusterfs-registry-block   12h
+logging                            logging-es-2          Bound     pvc-7cba3c2e-7059-11e8-8087-5254006ba8c8   10Gi       RWO            glusterfs-registry-block   12h
+openshift-ansible-service-broker   etcd                  Bound     pvc-08d3b36f-703b-11e8-8087-5254006ba8c8   1Gi        RWO            glusterfs-storage          16h
+openshift-infra                    metrics-cassandra-1   Bound     pvc-607c9158-705a-11e8-8087-5254006ba8c8   10Gi       RWO            glusterfs-registry-block   12h
+======================================================================================================================================================================
+[root@ose-master01 ~]# oc project mysql 
+Now using project "mysql" on server "https://ose-master01.example.com:8443".
+[root@ose-master01 ~]# oc get pvc
+NAME      STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
+mysql     Bound     pvc-103d4392-7125-11e8-a950-5254006ba8c8   10Gi       RWO            glusterfs-storage   8m
+[root@ose-master01 ~]# oc get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                                   STORAGECLASS               REASON    AGE
+pvc-08d3b36f-703b-11e8-8087-5254006ba8c8   1Gi        RWO            Delete           Bound     openshift-ansible-service-broker/etcd   glusterfs-storage                    1d
+pvc-103d4392-7125-11e8-a950-5254006ba8c8   10Gi       RWO            Delete           Bound     mysql/mysql                             glusterfs-storage                    8m
+pvc-45d0343d-7059-11e8-8087-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-0                    glusterfs-registry-block             1d
+pvc-607c9158-705a-11e8-8087-5254006ba8c8   10Gi       RWO            Delete           Bound     openshift-infra/metrics-cassandra-1     glusterfs-registry-block             1d
+pvc-60fc10a3-7059-11e8-8087-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-1                    glusterfs-registry-block             1d
+pvc-7cba3c2e-7059-11e8-8087-5254006ba8c8   10Gi       RWO            Delete           Bound     logging/logging-es-2                    glusterfs-registry-block             1d
+pvc-ab0fdff7-7057-11e8-8087-5254006ba8c8   1Gi        RWO            Delete           Bound     infra-storage/chc-block-claim           glusterfs-registry-block             1d
+registry-volume                            25Gi       RWX            Retain           Bound     default/registry-claim                                                       1d
+[root@ose-master01 ~]# oc get po
+NAME            READY     STATUS    RESTARTS   AGE
+mysql-1-sqrqk   1/1       Running   1          7m
+[root@ose-master01 ~]# oc rsh mysql-1-sqrqk 
+sh-4.2$ df -hPT
+Filesystem                                                                                         Type            Size  Used Avail Use% Mounted on
+/dev/mapper/docker-253:0-67308672-293cc671a315b041b3778a7e6f7697f113a7d7813bee5aead70eaa2dde21e3a9 xfs              10G  461M  9.6G   5% /
+tmpfs                                                                                              tmpfs           3.9G     0  3.9G   0% /dev
+tmpfs                                                                                              tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
+/dev/mapper/rhel-root                                                                              xfs              36G  3.4G   33G  10% /etc/hosts
+shm                                                                                                tmpfs            64M     0   64M   0% /dev/shm
+192.168.122.60:vol_da4bdd7540a8d671697945d7f1934b37                                                fuse.glusterfs   10G  222M  9.8G   3% /var/lib/mysql/data
+tmpfs                                                                                              tmpfs           3.9G   16K  3.9G   1% /run/secrets/kubernetes.io/serviceaccount
+tmpfs                                                                                              tmpfs           3.9G     0  3.9G   0% /proc/scsi
+tmpfs                                                                                              tmpfs           3.9G     0  3.9G   0% /sys/firmware
+sh-4.2$ ls -l /var/lib/mysql/data
+total 180259
+drwxr-sr-x. 2 1000090000 2001     4096 Jun 16 05:27 HusnainBustam
+-rw-r-----. 1 1000090000 2001       56 Jun 16 05:22 auto.cnf
+-rw-------. 1 1000090000 2001     1676 Jun 16 05:22 ca-key.pem
+-rw-r--r--. 1 1000090000 2001     1112 Jun 16 05:22 ca.pem
+-rw-r--r--. 1 1000090000 2001     1112 Jun 16 05:22 client-cert.pem
+-rw-------. 1 1000090000 2001     1680 Jun 16 05:22 client-key.pem
+-rw-r-----. 1 1000090000 2001      370 Jun 16 05:24 ib_buffer_pool
+-rw-r-----. 1 1000090000 2001 79691776 Jun 16 05:24 ib_logfile0
+-rw-r-----. 1 1000090000 2001 79691776 Jun 16 05:22 ib_logfile1
+-rw-r-----. 1 1000090000 2001 12582912 Jun 16 05:24 ibdata1
+-rw-r-----. 1 1000090000 2001 12582912 Jun 16 05:24 ibtmp1
+drwxr-s---. 2 1000090000 2001     4096 Jun 16 05:23 mysql
+-rw-r-----. 1 1000090000 2001        2 Jun 16 05:24 mysql-1-sqrqk.pid
+-rw-r--r--. 1 1000090000 2001        6 Jun 16 05:23 mysql_upgrade_info
+drwxr-s---. 2 1000090000 2001     4096 Jun 16 05:23 performance_schema
+-rw-------. 1 1000090000 2001     1676 Jun 16 05:22 private_key.pem
+-rw-r--r--. 1 1000090000 2001      452 Jun 16 05:22 public_key.pem
+drwxr-s---. 2 1000090000 2001     4096 Jun 16 05:23 sampledb
+-rw-r--r--. 1 1000090000 2001     1112 Jun 16 05:22 server-cert.pem
+-rw-------. 1 1000090000 2001     1676 Jun 16 05:22 server-key.pem
+drwxr-s---. 2 1000090000 2001     4096 Jun 16 05:23 sys
+sh-4.2$ cd HusnainBustam
+sh: cd: HusnainBustam: No such file or directory
+sh-4.2$ cd /var/lib/mysql/data/HusnainBustam/
+sh-4.2$ ls
+file_1    file_12  file_16  file_2   file_23  file_27  file_30  file_34  file_38  file_41  file_45  file_49  file_52  file_56  file_6   file_63  file_67  file_70  file_74  file_78  file_81  file_85  file_89  file_92  file_96
+file_10   file_13  file_17  file_20  file_24  file_28  file_31  file_35  file_39  file_42  file_46  file_5   file_53  file_57  file_60  file_64  file_68  file_71  file_75  file_79  file_82  file_86  file_9   file_93  file_97
+file_100  file_14  file_18  file_21  file_25  file_29  file_32  file_36  file_4   file_43  file_47  file_50  file_54  file_58  file_61  file_65  file_69  file_72  file_76  file_8   file_83  file_87  file_90  file_94  file_98
+file_11   file_15  file_19  file_22  file_26  file_3   file_33  file_37  file_40  file_44  file_48  file_51  file_55  file_59  file_62  file_66  file_7   file_73  file_77  file_80  file_84  file_88  file_91  file_95  file_99
+sh-4.2$ exit
+exit
+[root@ose-master01 ~]# oc project app-storage 
+Now using project "app-storage" on server "https://ose-master01.example.com:8443".
+[root@ose-master01 ~]# oc get po
+NAME                      READY     STATUS    RESTARTS   AGE
+glusterfs-storage-42g2c   1/1       Running   2          1d
+glusterfs-storage-c584s   1/1       Running   2          1d
+glusterfs-storage-w6r69   1/1       Running   2          1d
+heketi-storage-1-twfwf    1/1       Running   2          1d
+[root@ose-master01 ~]# oc rsh glusterfs-storage-42g2c
+sh-4.2# gluster vol list
+heketidbstorage
+vol_7d648d54030bf1621ed8ae192898f13b
+vol_da4bdd7540a8d671697945d7f1934b37
+sh-4.2# gluster vol info vol_da4bdd7540a8d671697945d7f1934b37
+ 
+Volume Name: vol_da4bdd7540a8d671697945d7f1934b37
+Type: Replicate
+Volume ID: b0c763cf-e9c8-4b53-b9c4-20b01c337358
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.122.61:/var/lib/heketi/mounts/vg_8ca54fd6b53889776cfb062d3d4fb0ef/brick_c5b86082efcc152233249be7212f93bd/brick
+Brick2: 192.168.122.62:/var/lib/heketi/mounts/vg_2560432629e8caaa570cf0efd4154af3/brick_3381324be0d407246252974b3c1e09e7/brick
+Brick3: 192.168.122.60:/var/lib/heketi/mounts/vg_d603a39f02bd524c9dcc0a0c1bb3b228/brick_bdc1f4d1cf6457257423c5a17dd649e9/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+sh-4.2# cd /var/lib/heketi/mounts/vg_2560432629e8caaa570cf0efd4154af3/brick_3381324be0d407246252974b3c1e09e7/brick
+sh-4.2# 
+sh-4.2# ls
+HusnainBustam  ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile1  ibtmp1  mysql-1-sqrqk.pid   performance_schema  public_key.pem  server-cert.pem  sys
+auto.cnf       ca.pem      client-key.pem   ib_logfile0     ibdata1      mysql   mysql_upgrade_info  private_key.pem     sampledb        server-key.pem
+sh-4.2# cd HusnainBustam/
+sh-4.2# ls
+file_1    file_12  file_16  file_2   file_23  file_27  file_30  file_34  file_38  file_41  file_45  file_49  file_52  file_56  file_6   file_63  file_67  file_70  file_74  file_78  file_81  file_85  file_89  file_92  file_96
+file_10   file_13  file_17  file_20  file_24  file_28  file_31  file_35  file_39  file_42  file_46  file_5   file_53  file_57  file_60  file_64  file_68  file_71  file_75  file_79  file_82  file_86  file_9   file_93  file_97
+file_100  file_14  file_18  file_21  file_25  file_29  file_32  file_36  file_4   file_43  file_47  file_50  file_54  file_58  file_61  file_65  file_69  file_72  file_76  file_8   file_83  file_87  file_90  file_94  file_98
+file_11   file_15  file_19  file_22  file_26  file_3   file_33  file_37  file_40  file_44  file_48  file_51  file_55  file_59  file_62  file_66  file_7   file_73  file_77  file_80  file_84  file_88  file_91  file_95  file_99
+sh-4.2# 
+==============================================================================================================

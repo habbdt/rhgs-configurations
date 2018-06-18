@@ -1,0 +1,7 @@
+ansible all -i mini-hosts -m shell -a ' systemctl restart dnsmasq'
+ansible all -i mini-hosts -m shell -a ' setsebool -P  virt_sandbox_use_fusefs 1 '
+ansible all -i mini-hosts -m shell -a ' useradd user1 '
+ansible all -i mini-hosts -m shell -a ' useradd user2 '
+ansible all -i mini-hosts -m shell -a ' echo redhat | passwd user1 --stdin '
+ansible all -i mini-hosts -m shell -a ' echo redhat | passwd user2 --stdin '
+ansible all -i mini-hosts -m shell -a ' ping -c 1 test.apps.master.example.com'

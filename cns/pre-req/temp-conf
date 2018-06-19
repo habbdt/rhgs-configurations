@@ -1,0 +1,4 @@
+ansible all -i ose-hosts -m shell -a ' systemctl restart dnsmasq'
+ansible all -i ose-hosts -m shell -a ' systemctl restart network'
+ansible all -i ose-hosts -m shell -a ' ping -c 1 test.apps.ose-master.example.com'
+

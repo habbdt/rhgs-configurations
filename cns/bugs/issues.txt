@@ -1,0 +1,6 @@
+[root@ose-master01 ~]# heketi-cli cluster list
+Error: Token used before issued
+[root@ose-master01 ~]# heketi-cli cluster list
+Clusters:
+Id:7c1263bbad505c0ec712b03b9115caae [file][block]
+

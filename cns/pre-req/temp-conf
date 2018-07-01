@@ -2,4 +2,5 @@ ansible all -i ose-hosts -m copy -a 'src=resolv.conf dest=/etc/resolv.conf  owne
 ansible all -i ose-hosts -m copy -a 'src=dnsmasq.conf dest=/etc/dnsmasq.conf  owner=root group=root mode=0644'
 ansible all -i ose-hosts -m copy -a 'src=resolv.dnsmasq dest=/etc/resolv.dnsmasq  owner=root group=root mode=0644'
 ansible all -i ose-hosts -m shell -a ' systemctl restart dnsmasq'
+ansible all -i ose-hosts -m shell -a ' systemctl restart network'
 ansible all -i ose-hosts -m shell -a ' ping -c 1 test.apps.ose-master.example.com' -f 10

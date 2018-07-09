@@ -1,0 +1,115 @@
+[masters]
+ose-master01.example.com openshift_node_labels="{'region': 'master'}"
+
+[etcd]
+ose-master01.example.com
+
+[nodes]
+ose-master01.example.com openshift_node_labels="{'region': 'primary', 'zone': 'default', 'role': 'master'}"
+ose-infra-node[01:03].example.com openshift_node_labels="{'region': 'infra', 'zone': 'default', 'role': 'infra'}"
+ose-app-node[01:03].example.com openshift_node_labels="{'region': 'primary', 'zone': 'default', 'role': 'app'}"
+
+[glusterfs]
+ose-cns-node01.example.com glusterfs_devices='[ "/dev/vdc" ]' glusterfs_ip=192.168.122.60
+ose-cns-node02.example.com glusterfs_devices='[ "/dev/vdc" ]' glusterfs_ip=192.168.122.61
+ose-cns-node03.example.com glusterfs_devices='[ "/dev/vdc" ]' glusterfs_ip=192.168.122.62
+
+
+[OSEv3:children]
+masters
+nodes
+etcd
+glusterfs
+
+[OSEv3:vars]
+ansible_user=root
+ansible_become=yes
+openshift_disable_check=disk_availability
+ansible_ssh_user=root
+openshift_deployment_type=openshift-enterprise
+openshift_release=v3.9
+osm_default_subdomain=apps.ose-master.example.com
+openshift_master_default_subdomain=apps.ose-master.example.com
+oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
+openshift_examples_modify_imagestreams=true
+#openshift_builddefaults_nodeselectors={'region':'infra'}
+openshift_hosted_router_selector='region=infra'
+openshift_hosted_router_replicas=3
+
+# Debug level for all OpenShift components (Defaults to 2)
+debug_level=2
+
+# Manage openshift example imagestreams and templates during install and upgrade
+#openshift_install_examples=true
+docker_version="1.13.1"
+
+
+# htpasswd auth
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+# Defining htpasswd users
+openshift_master_htpasswd_users={'user1': '$1$xyz$I1.Xb6qvLmzMqzXpNuDcE1', 'user2': '$1$xyz$I1.Xb6qvLmzMqzXpNuDcE1'}
+
+# Allow all auth
+openshift_master_identity_providers=[{'name': 'allow_all', 'login': 'true', 'challenge': 'true', 'kind': 'AllowAllPasswordIdentityProvider'}]
+
+# Enable cockpit
+osm_use_cockpit=true
+
+# Set cockpit plugins
+osm_cockpit_plugins=['cockpit-kubernetes']
+openshift_master_min_tls_version=VersionTLS12
+openshift_node_min_tls_version=VersionTLS12
+
+openshift_hosted_registry_replicas=1
+
+# Prometheus deployment
+openshift_hosted_prometheus_deploy=true
+
+# Configure the multi-tenant SDN plugin (default is 'redhat/openshift-ovs-subnet')
+os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
+
+# the provided value, specify openshift_master_overwrite_named_certificates.
+openshift_master_overwrite_named_certificates=true
+
+# Configure logrotate scripts
+logrotate_scripts=[{"name": "syslog", "path": "/var/log/cron\n/var/log/maillog\n/var/log/messages\n/var/log/secure\n/var/log/spooler\n", "options": ["daily", "rotate 7", "compress", "sharedscripts", "missingok"], "scripts": {"postrotate": "/bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true"}}]
+
+
+# Enable service catalog
+openshift_enable_service_catalog=true
+
+# Enable template service broker (requires service catalog to be enabled, above)
+template_service_broker_install=true
+
+# Configure usage of openshift_clock role.
+openshift_clock_enabled=true
+
+# Enable API service auditing
+openshift_master_audit_config={"enabled": true}
+
+# this option will be used for Logging and Metrics deployment
+openshift_master_dynamic_provisioning_enabled=true
+
+# metrics (modify to =true when deploying metrics via specific playbook and uncomment the lines below)
+#openshift_metrics_install_metrics=true
+
+# logging (modify to =true when deploying logging via specific playbook and uncomment the lines below)
+#openshift_logging_install_logging=true                     
+#openshift_logging_es_cluster_size=3
+
+# this is required otherwise it will fail openshift_sanitize_inventory. cloud provider is not configured but dynamic is set
+dynamic_volumes_check=False
+
+
+openshift_storage_glusterfs_namespace=app-storage
+openshift_storage_glusterfs_is_native=false
+openshift_storage_glusterfs_storageclass=true
+openshift_storage_glusterfs_block_deploy=false
+openshift_storage_glusterfs_heketi_is_native=true
+openshift_storage_glusterfs_heketi_executor=ssh
+openshift_storage_glusterfs_heketi_ssh_port=22
+openshift_storage_glusterfs_heketi_ssh_user=root
+openshift_storage_glusterfs_heketi_ssh_sudo=false
+openshift_storage_glusterfs_heketi_ssh_keyfile="/root/.ssh/id_rsa"
+openshift_storageclass_default=false

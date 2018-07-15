@@ -10,9 +10,15 @@ ose-infra-node[01:03].example.com openshift_node_labels="{'region': 'infra', 'zo
 ose-app-node[01:03].example.com openshift_node_labels="{'region': 'primary', 'zone': 'default', 'role': 'app'}"
 
 [glusterfs]
-ose-cns-node01.example.com glusterfs_devices='[ "/dev/vdc" ]' glusterfs_ip=192.168.122.60
-ose-cns-node02.example.com glusterfs_devices='[ "/dev/vdc" ]' glusterfs_ip=192.168.122.61
-ose-cns-node03.example.com glusterfs_devices='[ "/dev/vdc" ]' glusterfs_ip=192.168.122.62
+ose-cns-node01.example.com glusterfs_ip=192.168.122.60 glusterfs_devices='[ "/dev/vdc" ]' glusterfs_zone=1
+ose-cns-node02.example.com glusterfs_ip=192.168.122.61 glusterfs_devices='[ "/dev/vdc" ]' glusterfs_zone=2
+ose-cns-node03.example.com glusterfs_ip=192.168.122.62 glusterfs_devices='[ "/dev/vdc" ]' glusterfs_zone=3
+
+
+[glusterfs-registry]
+ose-crs-node01.example.com glusterfs_ip=192.168.122.63 glusterfs_devices='[ "/dev/vdc" ]' glusterfs_zone=1
+ose-crs-node02.example.com glusterfs_ip=192.168.122.64 glusterfs_devices='[ "/dev/vdc" ]' glusterfs_zone=2
+ose-crs-node03.example.com glusterfs_ip=192.168.122.65 glusterfs_devices='[ "/dev/vdc" ]' glusterfs_zone=3
 
 
 [OSEv3:children]
@@ -20,6 +26,8 @@ masters
 nodes
 etcd
 glusterfs
+glusterfs-registry
+
 
 [OSEv3:vars]
 ansible_user=root
@@ -64,7 +72,7 @@ openshift_node_min_tls_version=VersionTLS12
 openshift_hosted_registry_replicas=1
 
 # Prometheus deployment
-openshift_hosted_prometheus_deploy=true
+openshift_hosted_prometheus_deploy=false
 
 # Configure the multi-tenant SDN plugin (default is 'redhat/openshift-ovs-subnet')
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
@@ -91,25 +99,69 @@ openshift_master_audit_config={"enabled": true}
 # this option will be used for Logging and Metrics deployment
 openshift_master_dynamic_provisioning_enabled=true
 
-# metrics (modify to =true when deploying metrics via specific playbook and uncomment the lines below)
-#openshift_metrics_install_metrics=true
-
-# logging (modify to =true when deploying logging via specific playbook and uncomment the lines below)
-#openshift_logging_install_logging=true                     
-#openshift_logging_es_cluster_size=3
 
 # this is required otherwise it will fail openshift_sanitize_inventory. cloud provider is not configured but dynamic is set
 dynamic_volumes_check=False
 
+# registry
+openshift_hosted_registry_replicas=3         
+openshift_registry_selector="regtion=infra"     
 
-openshift_storage_glusterfs_namespace=app-storage
+ 
+
+# registry storage
+openshift_hosted_registry_storage_kind=glusterfs   
+openshift_hosted_registry_storage_volume_size=25Gi  
+
+
+# metrics (modify to =true when deploying metrics via specific playbook and uncomment the lines below)
+openshift_metrics_install_metrics=false    
+#openshift_metrics_hawkular_nodeselector={"region":"infra"}       
+#openshift_metrics_cassandra_nodeselector={"region":"infra"}
+#openshift_metrics_heapster_nodeselector={"region":"infra"}
+#openshift_metrics_cassanda_pvc_storage_class_name="glusterfs-storage-block"
+#openshift_metrics_cassandra_pvc_size=50Gi  
+#openshift_metrics_storage_kind=dynamic         
+
+
+
+# logging (modify to =true when deploying logging via specific playbook and uncomment the lines below)
+openshift_logging_install_logging=false                          
+#openshift_logging_es_cluster_size=3  
+#openshift_logging_es_nodeselector={"region":"infra"}              
+#openshift_logging_kibana_nodeselector={"region":"infra"}
+#openshift_logging_curator_nodeselector={"region":"infra"}
+#openshift_logging_es_pvc_storage_class_name="glusterfs-storage-block"
+# openshift_logging_es_pvc_dynamic=true
+# openshift_logging_es_pvc_size=25Gi
+
+
+
+# CRS storage for applications
 openshift_storage_glusterfs_is_native=false
+openshift_storage_glusterfs_namespace=app-storage    
 openshift_storage_glusterfs_storageclass=true
-openshift_storage_glusterfs_block_deploy=false
 openshift_storage_glusterfs_heketi_is_native=true
 openshift_storage_glusterfs_heketi_executor=ssh
 openshift_storage_glusterfs_heketi_ssh_port=22
 openshift_storage_glusterfs_heketi_ssh_user=root
 openshift_storage_glusterfs_heketi_ssh_sudo=false
-openshift_storage_glusterfs_heketi_ssh_keyfile="/root/.ssh/id_rsa"
-openshift_storageclass_default=false
+openshift_storage_glusterfs_heketi_ssh_keyfile="/root/.ssh/id_rsa"   
+openshift_storage_glusterfs_block_deploy=false    
+
+# CRS storage for OpenShift infrastructure
+openshift_storage_glusterfs_registry_is_native=false
+openshift_storage_glusterfs_registry_namespace=infra-storage    
+openshift_storage_glusterfs_registry_storageclass=false
+openshift_storage_glusterfs_registry_heketi_is_native=true
+openshift_storage_glusterfs_registry_heketi_executor=ssh
+openshift_storage_glusterfs_registry_heketi_ssh_port=22
+openshift_storage_glusterfs_registry_heketi_ssh_user=root
+openshift_storage_glusterfs_registry_heketi_ssh_sudo=false
+openshift_storage_glusterfs_registry_heketi_ssh_keyfile="/root/.ssh/id_rsa"   
+openshift_storage_glusterfs_registry_block_deploy=true     
+openshift_storage_glusterfs_registry_block_host_vol_create=true    
+openshift_storage_glusterfs_registry_block_host_vol_size=50     
+openshift_storage_glusterfs_registry_block_storageclass=true
+openshift_storage_glusterfs_registry_block_storageclass_default=false
+#openshift_storageclass_default=false

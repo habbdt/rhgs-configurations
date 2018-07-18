@@ -1,0 +1,7 @@
+[crs-hosts]
+ose-cns-node01.example.com
+ose-cns-node02.example.com
+ose-cns-node03.example.com
+ose-crs-node01.example.com
+ose-crs-node02.example.com
+ose-crs-node03.example.com

@@ -11,5 +11,3 @@ ansible all -i ose-hosts -m shell -a ' yum install -y glusterfs-fuse ' -f 10
 ansible all -i ose-hosts -m shell -a ' ping -c 1 test.apps.ose-master.example.com' -f 10
 ansible all -i ose-hosts -m shell -a 'yum clean all ' -f 10
 ansible all -i ose-hosts -m shell -a 'rm -rf /var/cache/yum ' -f 10
-ansible all -i ose-hosts -m shell -a 'yum repolist ' -f 10
-

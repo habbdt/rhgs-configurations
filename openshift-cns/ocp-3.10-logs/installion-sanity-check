@@ -1,0 +1,76 @@
+[root@ose-master01 ~]# oc get nodes
+NAME                           STATUS    ROLES     AGE       VERSION
+ose-app-node01.example.com     Ready     compute   1h        v1.10.0+b81c8f8
+ose-app-node02.example.com     Ready     compute   1h        v1.10.0+b81c8f8
+ose-app-node03.example.com     Ready     compute   1h        v1.10.0+b81c8f8
+ose-infra-node01.example.com   Ready     infra     1h        v1.10.0+b81c8f8
+ose-infra-node02.example.com   Ready     infra     1h        v1.10.0+b81c8f8
+ose-infra-node03.example.com   Ready     infra     1h        v1.10.0+b81c8f8
+ose-master01.example.com       Ready     master    1h        v1.10.0+b81c8f8
+[root@ose-master01 ~]# oc get po --all-namespaces
+NAMESPACE               NAME                                           READY     STATUS    RESTARTS   AGE
+app-storage             glusterfs-storage-hjl9n                        1/1       Running   0          1h
+app-storage             glusterfs-storage-lk2x9                        1/1       Running   0          1h
+app-storage             glusterfs-storage-mlnmg                        1/1       Running   0          1h
+app-storage             heketi-storage-1-2l78c                         1/1       Running   0          1h
+default                 docker-registry-1-9znkc                        1/1       Running   0          1h
+default                 docker-registry-1-wr2f4                        1/1       Running   0          1h
+default                 docker-registry-1-xq2mr                        1/1       Running   0          1h
+default                 registry-console-1-97n2v                       1/1       Running   0          1h
+default                 router-1-vvbnm                                 1/1       Running   0          1h
+infra-storage           glusterblock-registry-provisioner-dc-1-hm8x7   1/1       Running   0          1h
+infra-storage           glusterfs-registry-dzq7v                       1/1       Running   0          1h
+infra-storage           glusterfs-registry-kbkkp                       1/1       Running   0          1h
+infra-storage           glusterfs-registry-lh5t2                       1/1       Running   0          1h
+infra-storage           heketi-registry-1-d86gg                        1/1       Running   0          1h
+kube-service-catalog    apiserver-9nffg                                1/1       Running   0          1h
+kube-service-catalog    controller-manager-r9j72                       1/1       Running   0          1h
+kube-system             master-api-ose-master01.example.com            1/1       Running   0          1h
+kube-system             master-controllers-ose-master01.example.com    1/1       Running   0          1h
+kube-system             master-etcd-ose-master01.example.com           1/1       Running   0          1h
+openshift-node          sync-6vd2b                                     1/1       Running   0          1h
+openshift-node          sync-b4g66                                     1/1       Running   0          1h
+openshift-node          sync-dmj9j                                     1/1       Running   0          1h
+openshift-node          sync-j89q2                                     1/1       Running   0          1h
+openshift-node          sync-jb6x5                                     1/1       Running   0          1h
+openshift-node          sync-npkjf                                     1/1       Running   0          1h
+openshift-node          sync-zf2c5                                     1/1       Running   0          1h
+openshift-sdn           ovs-5bds7                                      1/1       Running   0          1h
+openshift-sdn           ovs-6k624                                      1/1       Running   0          1h
+openshift-sdn           ovs-ddw9r                                      1/1       Running   0          1h
+openshift-sdn           ovs-hkhln                                      1/1       Running   0          1h
+openshift-sdn           ovs-v6bw4                                      1/1       Running   0          1h
+openshift-sdn           ovs-vc5pd                                      1/1       Running   0          1h
+openshift-sdn           ovs-w4ldb                                      1/1       Running   0          1h
+openshift-sdn           sdn-5chc4                                      1/1       Running   0          1h
+openshift-sdn           sdn-f2zll                                      1/1       Running   0          1h
+openshift-sdn           sdn-g62ws                                      1/1       Running   0          1h
+openshift-sdn           sdn-l87j5                                      1/1       Running   0          1h
+openshift-sdn           sdn-nn8dz                                      1/1       Running   0          1h
+openshift-sdn           sdn-qfn7p                                      1/1       Running   0          1h
+openshift-sdn           sdn-whzpb                                      1/1       Running   0          1h
+openshift-web-console   webconsole-7f944b7c85-9sn5n                    1/1       Running   0          1h
+[root@ose-master01 ~]# oc get project
+NAME                    DISPLAY NAME   STATUS
+app-storage                            Active
+default                                Active
+infra-storage                          Active
+kube-public                            Active
+kube-service-catalog                   Active
+kube-system                            Active
+management-infra                       Active
+openshift                              Active
+openshift-infra                        Active
+openshift-logging                      Active
+openshift-node                         Active
+openshift-sdn                          Active
+openshift-web-console                  Active
+[root@ose-master01 ~]# oc version
+oc v3.10.14
+kubernetes v1.10.0+b81c8f8
+features: Basic-Auth GSSAPI Kerberos SPNEGO
+
+Server https://ose-master01.example.com:8443
+openshift v3.10.14
+kubernetes v1.10.0+b81c8f8
+

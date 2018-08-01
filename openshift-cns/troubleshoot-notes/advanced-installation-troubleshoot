@@ -1,2 +1,0 @@
-# Install glusterfs-fuse client on apps, infra and CNS nodes. 
-# virt_sandbox_use_fusefs --> 1 : on all nodes

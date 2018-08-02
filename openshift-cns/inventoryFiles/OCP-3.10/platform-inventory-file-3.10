@@ -14,25 +14,23 @@ ansible_user=root
 openshift_deployment_type=openshift-enterprise
 openshift_release=v3.10
 openshift_disable_check=memory_availability,disk_availability,docker_image_availability
-#openshift_master_api_port=443
-#openshift_master_console_port=443
-#openshift_portal_net=172.30.0.0/16
-#os_sdn_network_plugin_name='redhat/openshift-ovs-networkpolicy'
-#openshift_master_cluster_method=native
-#openshift_node_local_quota_per_fsgroup=512Mi
 osm_use_cockpit=true
-osm_default_subdomain=apps.ose-master.example.com
-openshift_master_default_subdomain=apps.ose-master.example.com
-openshift_hostname_check=false
-openshift_builddefaults_nodeselectors={'node-role.kubernetes.io/compute':'true'}
+#openshift_builddefaults_nodeselectors={'node-role.kubernetes.io/compute':'true'}
 openshift_hosted_router_selector='node-role.kubernetes.io/infra=true'
 openshift_hosted_router_replicas=1
+
 openshift_master_admission_plugin_config='{"PersistentVolumeClaimResize":{"configuration":{"apiVersion":"v1", "kind":"DefaultAdmissionConfig", "disable":false}}}'
+
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 openshift_examples_modify_imagestreams=true
+
 openshift_web_console_install=true
 openshift_enable_service_catalog=true
+
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+
+osm_default_subdomain=apps.ose-master.example.com
+openshift_master_default_subdomain=apps.ose-master.example.com
 
 # Additional parameters
 openshift_storage_glusterfs_timeout=600

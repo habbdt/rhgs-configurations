@@ -1,0 +1,74 @@
+
+# /etc/origin/master/master-config.yaml
+admissionConfig:
+  pluginConfig:
+    BuildDefaults:
+      configuration:
+        apiVersion: v1
+        env: []
+        kind: BuildDefaultsConfig
+        resources:
+          limits: {}
+          requests: {}
+    BuildOverrides:
+      configuration:
+        apiVersion: v1
+        kind: BuildOverridesConfig
+...
+kubernetesMasterConfig:
+  apiServerArguments:
+    storage-backend:
+    - etcd3
+    storage-media-type:
+    - application/vnd.kubernetes.protobuf
+    feature-gates:
+    - ExpandPersistentVolumes=true
+...
+
+# Creation and expansion of PVC.
+[root@ose-master01 ~]# oc project storage-practice 
+Now using project "storage-practice" on server "https://ose-master01.example.com:8443".
+
+[root@ose-master01 ~]# oc get sc
+NAME                       PROVISIONER                AGE
+glusterfs-registry-block   gluster.org/glusterblock   1d
+glusterfs-storage          kubernetes.io/glusterfs    2h
+
+[root@ose-master01 ~]# oc get sc glusterfs-storage -o yaml
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  creationTimestamp: 2018-08-02T16:30:37Z
+  name: glusterfs-storage
+  resourceVersion: "98555"
+  selfLink: /apis/storage.k8s.io/v1/storageclasses/glusterfs-storage
+  uid: 63058863-9671-11e8-bcde-5254006888d4
+parameters:
+  resturl: http://heketi-storage-app-storage.apps.ose-master.example.com
+  restuser: admin
+  secretName: heketi-storage-admin-secret
+  secretNamespace: app-storage
+  volumenameprefix: storage-practice
+provisioner: kubernetes.io/glusterfs
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+
+[root@ose-master01 ~]# oc create -f pvc-file.yaml 
+persistentvolumeclaim "file-claim2" created
+[root@ose-master01 ~]# oc get pvc
+NAME          STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
+file-claim2   Bound     pvc-0bbe7f81-9687-11e8-9df3-5254006888d4   1Gi        RWX            glusterfs-storage   15s
+[root@ose-master01 ~]# oc edit pvc file-claim2
+persistentvolumeclaim "file-claim2" edited
+[root@ose-master01 ~]# oc get pvc
+NAME          STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
+file-claim2   Bound     pvc-0bbe7f81-9687-11e8-9df3-5254006888d4   2Gi        RWX            glusterfs-storage   51s
+
+sh-4.2# gluster vol rebal storage-practice_storage-practice_file-claim2_0bc18610-9687-11e8-90f9-5254006888d4 status
+                                    Node Rebalanced-files          size       scanned      failures       skipped               status  run time in h:m:s
+                               ---------      -----------   -----------   -----------   -----------   -----------         ------------     --------------
+                               localhost                0        0Bytes             0             0             0            completed        0:00:00
+                          192.168.122.55                0        0Bytes             0             0             0            completed        0:00:00
+              ose-app-node01.example.com                0        0Bytes             0             0             0            completed        0:00:00
+volume rebalance: storage-practice_storage-practice_file-claim2_0bc18610-9687-11e8-90f9-5254006888d4: success

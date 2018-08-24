@@ -1,0 +1,20 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.122.131		ose310-master-node1.example.com		ose310-master-node1
+192.168.122.132		ose310-master-node2.example.com		ose310-master-node2
+192.168.122.133		ose310-master-node3.example.com		ose310-master-node3
+192.168.122.134		ose310-infra-node1.example.com		ose310-infra-node1
+192.168.122.135		ose310-infra-node2.example.com		ose310-infra-node2
+192.168.122.136		ose310-infra-node3.example.com		ose310-infra-node3
+192.168.122.137		ose310-infra-node4.example.com		ose310-infra-node4
+192.168.122.138		ose310-infra-node5.example.com		ose310-infra-node5
+192.168.122.139		ose310-infra-node6.example.com		ose310-infra-node6
+192.168.122.140		ose310-app-node1.example.com		ose310-app-node1
+192.168.122.141		ose310-app-node2.example.com		ose310-app-node2
+192.168.122.142		ose310-app-node3.example.com		ose310-app-node3
+192.168.122.143         ose310-gluster-node1.example.com        ose310-gluster-node1
+192.168.122.144         ose310-gluster-node2.example.com        ose310-gluster-node2
+192.168.122.145         ose310-gluster-node3.example.com        ose310-gluster-node3
+192.168.122.146         ose310-gluster-node4.example.com        ose310-gluster-node4
+192.168.122.147         ose310-gluster-node5.example.com        ose310-gluster-node5
+192.168.122.148         ose310-gluster-node6.example.com        ose310-gluster-node6

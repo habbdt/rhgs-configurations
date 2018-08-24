@@ -1,0 +1,11 @@
+[stretch-cluster]
+ose310-master-node1.example.com
+ose310-infra-node1.example.com
+ose310-infra-node2.example.com
+ose310-infra-node3.example.com
+ose310-infra-node4.example.com
+ose310-infra-node5.example.com
+ose310-infra-node6.example.com
+ose310-app-node1.example.com
+ose310-app-node2.example.com
+ose310-app-node3.example.com

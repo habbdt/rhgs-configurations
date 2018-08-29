@@ -1,0 +1,17 @@
+[RHSClient-RHEL-7]
+name=RHSClient-RHEL-7
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-Clients/2018-07-27.1/RHSClient-RHEL-7/$basearch/os
+gpgcheck=0
+enabled=1
+
+[RHSClient-RHEL-7-debug]
+name=RHSClient-RHEL-7 Debuginfo
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-Clients/2018-07-27.1/RHSClient-RHEL-7/$basearch/debuginfo
+gpgcheck=0
+enabled=0
+
+[RHSClient-RHEL-7-sources]
+name=RHSClient-RHEL-7 Sources
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-Clients/2018-07-27.1/RHSClient-RHEL-7/source
+gpgcheck=0
+enabled=0

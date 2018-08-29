@@ -1,0 +1,17 @@
+[Server-RH-Gluster-3.4-Server]
+name=Server-RH-Gluster-3.4-Server
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7/2018-08-27.1/Server-RH-Gluster-3.4-Server/$basearch/os
+gpgcheck=0
+enabled=1
+
+[Server-RH-Gluster-3.4-Server-debug]
+name=Server-RH-Gluster-3.4-Server Debuginfo
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7/2018-08-27.1/Server-RH-Gluster-3.4-Server/$basearch/debuginfo
+gpgcheck=0
+enabled=0
+
+[Server-RH-Gluster-3.4-Server-sources]
+name=Server-RH-Gluster-3.4-Server Sources
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7/2018-08-27.1/Server-RH-Gluster-3.4-Server/source
+gpgcheck=0
+enabled=0

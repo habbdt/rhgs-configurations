@@ -1,0 +1,10 @@
+
+resolv-file=/etc/resolv.dnsmasq
+
+address=/apps.ose-master.example.com/192.168.122.140
+address=/apps.ose-master.example.com/192.168.122.141
+address=/apps.ose-master.example.com/192.168.122.142
+
+# Include all files in /etc/dnsmasq.d except RPM backup files
+conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig
+

@@ -1,0 +1,47 @@
+[External-Server-RH-Gluster-3.4-Server-Repository-1]
+name=External-Server-RH-Gluster-3.4-Server-Repository - 1
+baseurl=http://download.eng.bos.redhat.com/brewroot/repos/rhel-7.5-build/latest/$basearch
+gpgcheck=0
+enabled=1
+
+[External-Server-RH-Gluster-3.4-Server-Repository-2]
+name=External-Server-RH-Gluster-3.4-Server-Repository - 2
+baseurl=http://pulp-read.dist.prod.ext.phx2.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-server/3.1/os/
+gpgcheck=0
+enabled=1
+
+[External-Server-RH-Gluster-3.4-Server-Repository-3]
+name=External-Server-RH-Gluster-3.4-Server-Repository - 3
+baseurl=http://pulp-read.dist.prod.ext.phx2.redhat.com/content/dist/rhel/server/7/7Server/x86_64/rhgs-server-nfs/3.1/os/
+gpgcheck=0
+enabled=1
+
+[External-Server-RH-Gluster-3.4-Server-Repository-4]
+name=External-Server-RH-Gluster-3.4-Server-Repository - 4
+baseurl=http://download-node-02.eng.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7/latest/Server-RH-Gluster-3.4-Samba/x86_64/os/
+gpgcheck=0
+enabled=1
+
+[External-Server-RH-Gluster-3.4-Server-Repository-5]
+name=External-Server-RH-Gluster-3.4-Server-Repository - 5
+baseurl=http://pulp-read.dist.prod.ext.phx2.redhat.com//content/dist/rhel/server/7/7Server/x86_64/ansible/2/os/
+gpgcheck=0
+enabled=1
+
+[Server-RH-Gluster-3.4-Server]
+name=Server-RH-Gluster-3.4-Server
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7-RC/2018-08-28.1/Server-RH-Gluster-3.4-Server/$basearch/os
+gpgcheck=0
+enabled=1
+
+[Server-RH-Gluster-3.4-Server-debug]
+name=Server-RH-Gluster-3.4-Server Debuginfo
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7-RC/2018-08-28.1/Server-RH-Gluster-3.4-Server/$basearch/debuginfo
+gpgcheck=0
+enabled=0
+
+[Server-RH-Gluster-3.4-Server-sources]
+name=Server-RH-Gluster-3.4-Server Sources
+baseurl=http://download.lab.bos.redhat.com/rcm-guest/puddles/RHGS/3.4.0-RHEL-7-RC/2018-08-28.1/Server-RH-Gluster-3.4-Server/source
+gpgcheck=0
+enabled=0

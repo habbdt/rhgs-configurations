@@ -1,0 +1,4 @@
+
+firewall-cmd --zone=public --add-port=24010/tcp --add-port=3260/tcp --add-port=111/tcp --add-port=22/tcp --add-port=24007/tcp --add-port=24008/tcp --add-port=49152-49664/tcp --permanent
+firewall-cmd --zone=public --add-service=glusterfs --permanent 
+firewall-cmd --reload

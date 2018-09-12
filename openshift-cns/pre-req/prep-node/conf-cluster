@@ -2,3 +2,5 @@ ansible all -i ose-stretch-cluster-hosts -m copy -a 'src=resolv.conf dest=/etc/r
 ansible all -i ose-stretch-cluster-hosts -m copy -a 'src=dnsmasq.conf_ose310 dest=/etc/dnsmasq.conf  owner=root group=root mode=0644'
 ansible all -i ose-stretch-cluster-hosts -m copy -a 'src=resolv.dnsmasq_ose310 dest=/etc/resolv.dnsmasq  owner=root group=root mode=0644'
 ansible all -i ose-stretch-cluster-hosts -m shell -a ' systemctl restart dnsmasq'
+ansible all -i ose-stretch-cluster-hosts -m shell -a ' systemctl restart network'
+ansible all -i ose-stretch-cluster-hosts -m shell -a ' ping -c 2 hello.apps.ose-master.example.com'

@@ -1,12 +1,10 @@
 # Architecture -01:
-
 [OSEv3:children]
 masters
 nodes
 etcd
 glusterfs
 glusterfs_registry
-
 
 [OSEv3:vars]
 debug_level=2
@@ -94,14 +92,13 @@ openshift_prometheus_alertbuffer_storage_volume_size=2Gi
 openshift_prometheus_alertbuffer_storage_type='pvc'
 
 # Container image to use for glusterfs pods
-openshift_storage_glusterfs_image="rhgs-server-rhel7:3.4.0-6"
+openshift_storage_glusterfs_image=registry.access.redhat.com/rhgs3/rhgs-server-rhel7:v3.10
 
 # Container image to use for glusterblock-provisioner pod
-openshift_storage_glusterfs_block_image="rhgs-gluster-block-prov-rhel7:3.4.0-4"
+openshift_storage_glusterfs_block_image=registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.10
 
 # Container image to use for heketi pods
-openshift_storage_glusterfs_heketi_image="rhgs-volmanager-rhel7:3.4.0-3"
-
+openshift_storage_glusterfs_heketi_image=registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:v3.10
 
 # CNS storage cluster - this cluster will serve both file and block based storage
 openshift_storage_glusterfs_namespace=file-block-storage
